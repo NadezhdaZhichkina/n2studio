@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>n² студия — Дизайн-проект квартиры</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink:   #111110;
+      --ink2:  #2c2c2a;
+      --gray:  #6b6b65;
+      --gray2: #a8a8a0;
+      --gold:  #b8924a;
+      --gold2: #e2c98a;
+      --sand:  #f5f0e6;
+      --line:  #e4e0d8;
+      --white: #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .logo {
+      display: flex; align-items: center; gap: 11px;
+      text-decoration: none;
+    }
+    .logo-sq {
+      width: 32px; height: 32px; background: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--white); font-weight: 400;
+      letter-spacing: -.5px; flex-shrink: 0;
+    }
+    .logo-text { line-height: 1.2; }
+    .logo-name { font-size: .85rem; font-weight: 600; color: var(--ink); }
+    .logo-sub  { font-size: .68rem; color: var(--gray2); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: .8rem; color: var(--gray); text-decoration: none; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      font-size: .77rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--white);
+      background: var(--ink); padding: .5rem 1.3rem;
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 58px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 58px);
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6% 5% 6% 7%;
+      border-right: 1px solid var(--line);
+    }
+    .hero-tag {
+      font-size: .7rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 300; line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc {
+      font-size: .95rem; color: var(--gray);
+      line-height: 1.85; max-width: 400px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-solid {
+      font-size: .78rem; font-weight: 600; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--white);
+      background: var(--ink); padding: .85rem 2rem;
+      text-decoration: none; border: none; cursor: pointer;
+      font-family: inherit; transition: background .2s;
+      display: inline-block;
+    }
+    .btn-solid:hover { background: var(--gold); }
+    .btn-outline {
+      font-size: .78rem; font-weight: 600; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--ink);
+      background: transparent; padding: .85rem 1.8rem;
+      text-decoration: none; border: 1.5px solid var(--line);
+      font-family: inherit; cursor: pointer; transition: border-color .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--ink); }
+    .hero-nums {
+      display: flex; gap: 2.5rem;
+      margin-top: 3.5rem; padding-top: 2.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .hn { }
+    .hn-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 400; color: var(--ink); line-height: 1;
+    }
+    .hn-label { font-size: .7rem; color: var(--gray2); margin-top: 4px; }
+
+    /* Правая часть hero — реальный чертёж */
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: var(--sand);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-drawing {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      padding: 5%;
+      filter: contrast(1.05);
+    }
+    .hero-right-label {
+      position: absolute; bottom: 24px; left: 24px;
+      font-size: .68rem; color: var(--gray2); letter-spacing: .06em;
+      background: rgba(255,255,255,.85); padding: .3rem .7rem;
+    }
+
+    /* ── STRIP ── */
+    .strip {
+      background: var(--ink); padding: 14px 0;
+      overflow: hidden; white-space: nowrap;
+    }
+    .strip-inner {
+      display: inline-flex;
+      animation: strip 20s linear infinite;
+    }
+    .strip-item {
+      font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(255,255,255,.45); font-weight: 500;
+      padding: 0 28px; display: inline-flex; align-items: center; gap: 28px;
+    }
+    .strip-item::after { content: '·'; color: var(--gold); }
+    @keyframes strip { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── UTIL ── */
+    .s-tag {
+      font-size: .68rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--gold);
+      display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+    }
+    .s-tag::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      font-weight: 400; line-height: 1.15; color: var(--ink);
+    }
+    h2 em { font-style: italic; color: var(--gray); }
+    .s-lead { font-size: .92rem; color: var(--gray); line-height: 1.85; }
+
+    /* ── PORTFOLIO ── */
+    .portfolio { padding: 7rem 5%; }
+    .port-head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .port-link {
+      font-size: .75rem; font-weight: 500; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--gray); text-decoration: none;
+      border-bottom: 1px solid var(--line); padding-bottom: 2px;
+      transition: color .2s, border-color .2s;
+    }
+    .port-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* Сетка проектов */
+    .port-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 3px;
+    }
+    .port-card {
+      position: relative; overflow: hidden;
+      background: var(--sand); cursor: pointer;
+    }
+    .port-card:first-child { grid-column: span 2; }
+    .port-card:nth-child(5) { grid-column: span 2; }
+
+    .port-img {
+      width: 100%; display: block;
+      object-fit: cover; object-position: center;
+      transition: transform .5s ease;
+      filter: contrast(1.02);
+    }
+    .port-card:first-child .port-img { aspect-ratio: 16/9; }
+    .port-card:nth-child(2) .port-img { aspect-ratio: 4/5; }
+    .port-card:nth-child(3) .port-img { aspect-ratio: 4/3; }
+    .port-card:nth-child(4) .port-img { aspect-ratio: 4/3; }
+    .port-card:nth-child(5) .port-img { aspect-ratio: 16/7; }
+
+    .port-card:hover .port-img { transform: scale(1.03); }
+
+    .port-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(17,17,16,.85) 0%, transparent 55%);
+      opacity: 0; transition: opacity .35s;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 24px;
+    }
+    .port-card:hover .port-overlay { opacity: 1; }
+    .po-tag { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold2); margin-bottom: 6px; }
+    .po-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 4px; }
+    .po-meta { font-size: .75rem; color: rgba(255,255,255,.5); }
+
+    /* Заглушки для карточек без реального фото */
+    .port-placeholder {
+      width: 100%; background: #1a1916;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: .5rem;
+    }
+    .port-card:nth-child(3) .port-placeholder { aspect-ratio: 4/3; }
+    .port-card:nth-child(4) .port-placeholder { aspect-ratio: 4/3; }
+    .ph-icon { font-size: 2rem; opacity: .3; }
+    .ph-text { font-size: .72rem; color: rgba(255,255,255,.2); letter-spacing: .1em; text-transform: uppercase; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--sand); padding: 7rem 5%; }
+    .services-inner {
+      display: grid; grid-template-columns: 1fr 2fr;
+      gap: 6rem; align-items: start;
+    }
+    .services-left { position: sticky; top: 90px; }
+    .services-left h2 { margin-bottom: 1rem; }
+    .services-left .s-lead { margin-bottom: 2rem; max-width: 320px; }
+    .plans { display: flex; flex-direction: column; gap: 3px; }
+    .plan {
+      background: var(--white);
+      padding: 2rem 2.2rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 1.5rem; align-items: start;
+      border-left: 3px solid transparent;
+      transition: border-color .2s, box-shadow .2s;
+      cursor: default;
+    }
+    .plan:hover { border-left-color: var(--gold); box-shadow: 4px 0 0 var(--gold) inset; }
+    .plan.active { border-left-color: var(--gold); }
+    .plan-num { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: .5rem; line-height: 1.1; }
+    .plan-desc { font-size: .83rem; color: var(--gray); line-height: 1.7; margin-bottom: 1rem; }
+    .plan-items { list-style: none; }
+    .plan-items li {
+      font-size: .8rem; color: var(--ink2); padding: .35rem 0;
+      border-bottom: 1px solid var(--line);
+      display: flex; gap: .6rem;
+    }
+    .plan-items li:last-child { border-bottom: none; }
+    .pi-y { color: var(--gold); flex-shrink: 0; }
+    .pi-n { color: var(--line); flex-shrink: 0; }
+    .pi-n + span { color: var(--gray2); }
+    .plan-price-col { text-align: right; }
+    .plan-from { font-size: .7rem; color: var(--gray2); }
+    .plan-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 400; color: var(--ink); line-height: 1;
+    }
+    .plan-cta-link {
+      display: inline-block; margin-top: .8rem;
+      font-size: .72rem; font-weight: 600; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--ink);
+      text-decoration: none; border-bottom: 1px solid var(--line);
+      padding-bottom: 1px; transition: border-color .2s, color .2s;
+    }
+    .plan-cta-link:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── WHAT'S INCLUDED ── */
+    .included { padding: 7rem 5%; }
+    .inc-head { max-width: 540px; margin-bottom: 4rem; }
+    .inc-head h2 { margin-bottom: .8rem; }
+    .inc-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--line);
+    }
+    .inc-item {
+      background: var(--white); padding: 2rem 1.8rem;
+      transition: background .2s;
+    }
+    .inc-item:hover { background: var(--sand); }
+    .inc-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 300;
+      color: var(--line); line-height: 1; margin-bottom: .8rem;
+    }
+    .inc-title { font-size: .9rem; font-weight: 600; margin-bottom: .4rem; }
+    .inc-desc { font-size: .8rem; color: var(--gray); line-height: 1.7; }
+
+    /* ── TEAM ── */
+    .team { background: var(--ink); padding: 7rem 5%; }
+    .team-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .team-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.07);
+      padding: 3rem 2.5rem;
+      transition: background .2s;
+    }
+    .team-card:hover { background: rgba(255,255,255,.06); }
+    .tc-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem; font-weight: 300;
+      color: rgba(184,146,74,.2); line-height: 1; margin-bottom: 1.2rem;
+    }
+    .tc-role { font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+    .tc-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--white); margin-bottom: 1rem; line-height: 1.1; }
+    .tc-desc { font-size: .86rem; color: rgba(255,255,255,.4); line-height: 1.85; margin-bottom: 1.5rem; }
+    .tc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tc-tag { font-size: .7rem; color: rgba(255,255,255,.4); background: rgba(255,255,255,.05); padding: .25rem .65rem; }
+    .team-head-row {
+      grid-column: span 2;
+      padding: 3rem 2.5rem 0;
+    }
+    .team-head-row h2 { color: var(--white); margin-bottom: .6rem; }
+    .team-head-row .s-lead { color: rgba(255,255,255,.35); max-width: 500px; margin-bottom: 3rem; }
+    .team-head-row .s-tag { color: rgba(255,255,255,.25); }
+    .team-head-row .s-tag::before { background: rgba(255,255,255,.15); }
+
+    /* ── PROCESS ── */
+    .process { padding: 7rem 5%; }
+    .proc-head { max-width: 560px; margin-bottom: 4rem; }
+    .proc-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--line); }
+    .proc-step {
+      background: var(--white); padding: 2.5rem 2rem;
+      position: relative; transition: background .2s;
+    }
+    .proc-step:hover { background: var(--sand); }
+    .ps-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: var(--line); line-height: 1; margin-bottom: 1rem;
+    }
+    .ps-title { font-size: .93rem; font-weight: 600; margin-bottom: .5rem; }
+    .ps-desc { font-size: .82rem; color: var(--gray); line-height: 1.75; }
+
+    /* ── GUARANTEE ── */
+    .guarantee { background: var(--sand); padding: 7rem 5%; }
+    .g-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .g-left h2 { margin-bottom: 1rem; }
+    .g-left .s-lead { max-width: 380px; margin-bottom: 2rem; }
+    .g-items { display: flex; flex-direction: column; gap: 1px; }
+    .g-item {
+      background: var(--white); padding: 1.4rem 1.6rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: background .2s;
+    }
+    .g-item:hover { background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,.05); }
+    .g-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+    .g-text h3 { font-size: .9rem; font-weight: 600; margin-bottom: .3rem; }
+    .g-text p { font-size: .82rem; color: var(--gray); line-height: 1.65; }
+
+    /* Правая — реальный чертёж отопления */
+    .g-right {
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .g-drawing {
+      width: 100%; display: block;
+      filter: contrast(1.05) brightness(.98);
+    }
+    .g-right-label {
+      position: absolute; bottom: 12px; left: 12px;
+      font-size: .65rem; color: var(--gray2); letter-spacing: .06em;
+      background: rgba(255,255,255,.9); padding: .25rem .6rem;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews { padding: 7rem 5%; }
+    .rev-head { max-width: 500px; margin-bottom: 4rem; }
+    .rev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
+    .rev-card {
+      background: var(--white); padding: 2.2rem 2rem;
+      transition: background .2s;
+    }
+    .rev-card:hover { background: var(--sand); }
+    .rev-stars { color: var(--gold); letter-spacing: 3px; font-size: .85rem; margin-bottom: 1.2rem; }
+    .rev-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-style: italic; font-weight: 300;
+      color: var(--ink); line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .rev-hr { height: 1px; background: var(--line); margin-bottom: 1.2rem; }
+    .rev-name { font-size: .83rem; font-weight: 600; }
+    .rev-meta { font-size: .73rem; color: var(--gray2); margin-top: 2px; }
+
+    /* ── FAQ ── */
+    .faq { background: var(--sand); padding: 7rem 5%; }
+    .faq-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+    .faq-left h2 { margin-bottom: .8rem; }
+    .faq-left .s-lead { max-width: 340px; margin-bottom: 2rem; }
+    .faq-list { }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 1.2rem 0; text-align: left;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      font-size: .92rem; font-weight: 500; color: var(--ink);
+      font-family: 'Inter', sans-serif;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-icon { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; transition: transform .25s; }
+    .faq-q.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { font-size: .85rem; color: var(--gray); line-height: 1.8; padding-bottom: 1.2rem; display: none; }
+    .faq-a.open { display: block; }
+
+    /* ── CTA ── */
+    .cta { padding: 7rem 5%; background: var(--white); }
+    .cta-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .cta-left h2 { margin-bottom: .8rem; }
+    .cta-left .s-lead { margin-bottom: 2.5rem; max-width: 380px; }
+    .cta-form { display: flex; gap: 0; }
+    .cta-tel {
+      flex: 1; padding: .9rem 1.3rem;
+      border: 1.5px solid var(--line); border-right: none;
+      font-size: .92rem; font-family: inherit; color: var(--ink);
+      outline: none; transition: border-color .2s; background: var(--sand);
+    }
+    .cta-tel:focus { border-color: var(--gold); background: var(--white); }
+    .cta-btn {
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--white);
+      background: var(--ink); padding: .9rem 1.8rem;
+      border: none; cursor: pointer; font-family: inherit;
+      white-space: nowrap; transition: background .2s;
+    }
+    .cta-btn:hover { background: var(--gold); }
+    .cta-note { font-size: .7rem; color: var(--gray2); margin-top: .9rem; }
+    .cta-promises { display: flex; flex-direction: column; gap: 1rem; }
+    .cp-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; background: var(--sand); }
+    .cp-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .cp-text { font-size: .85rem; line-height: 1.6; }
+    .cp-text strong { display: block; font-size: .88rem; margin-bottom: 2px; }
+    .cp-text span { color: var(--gray); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); padding: 2.5rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .f-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 300; color: rgba(255,255,255,.6); text-decoration: none; letter-spacing: .03em; }
+    footer p { font-size: .72rem; color: rgba(255,255,255,.2); }
+    .f-links { display: flex; gap: 1.5rem; }
+    .f-links a { font-size: .72rem; color: rgba(255,255,255,.25); text-decoration: none; transition: color .2s; }
+    .f-links a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    .up { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .up.in { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 50vw; min-height: 300px; }
+      .services-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .services-left { position: static; }
+      .inc-grid { grid-template-columns: repeat(2,1fr); }
+      .team-inner { grid-template-columns: 1fr; }
+      .team-head-row { grid-column: span 1; }
+      .proc-steps { grid-template-columns: repeat(2,1fr); }
+      .g-inner { grid-template-columns: 1fr; }
+      .rev-grid { grid-template-columns: 1fr; }
+      .faq-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .cta-inner { grid-template-columns: 1fr; gap: 3rem; }
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 640px) {
+      .port-grid { grid-template-columns: 1fr; }
+      .port-card:first-child, .port-card:nth-child(5) { grid-column: span 1; }
+      .inc-grid, .proc-steps { grid-template-columns: 1fr; }
+      .cta-form { flex-direction: column; }
+      .cta-tel { border-right: 1.5px solid var(--line); border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-sq">n²</div>
+    <div class="logo-text">
+      <div class="logo-name">n² студия</div>
+      <div class="logo-sub">Дизайн-проект квартиры</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Проекты</a></li>
+    <li><a href="#services">Тарифы</a></li>
+    <li><a href="#team">О нас</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="nav-cta" href="#cta">Получить расчёт</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Архитектурная студия · Самара</div>
+    <h1>Проект,<br/>который <em>работает</em><br/>на стройке</h1>
+    <p class="hero-desc">Планировка, мебель, розетки, свет, водопровод — все чертежи для строителей в одном комплекте. Никаких переделок и споров по ходу ремонта.</p>
+    <div class="hero-btns">
+      <a class="btn-solid" href="#cta">Рассчитать стоимость</a>
+      <a class="btn-outline" href="#portfolio">Смотреть работы</a>
+    </div>
+    <div class="hero-nums">
+      <div class="hn">
+        <div class="hn-val">340+</div>
+        <div class="hn-label">готовых проектов</div>
+      </div>
+      <div class="hn">
+        <div class="hn-val">от 7 дн</div>
+        <div class="hn-label">срок сдачи</div>
+      </div>
+      <div class="hn">
+        <div class="hn-val">4.9 ★</div>
+        <div class="hn-label">рейтинг</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Реальная аксонометрия квартиры -->
+    <img class="hero-drawing" src="img/axo.jpg" alt="Аксонометрия квартиры — n² студия"/>
+    <div class="hero-right-label">Аксонометрия · Квартира «Ленинградка»</div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">Планировка</span>
+    <span class="strip-item">Аксонометрия</span>
+    <span class="strip-item">Расстановка мебели</span>
+    <span class="strip-item">Схема розеток</span>
+    <span class="strip-item">План освещения</span>
+    <span class="strip-item">Водопровод</span>
+    <span class="strip-item">Канализация</span>
+    <span class="strip-item">Отопление</span>
+    <span class="strip-item">PDF + DWG</span>
+    <span class="strip-item">Планировка</span>
+    <span class="strip-item">Аксонометрия</span>
+    <span class="strip-item">Расстановка мебели</span>
+    <span class="strip-item">Схема розеток</span>
+    <span class="strip-item">План освещения</span>
+    <span class="strip-item">Водопровод</span>
+    <span class="strip-item">Канализация</span>
+    <span class="strip-item">Отопление</span>
+    <span class="strip-item">PDF + DWG</span>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="port-head up">
+    <div>
+      <div class="s-tag">Портфолио</div>
+      <h2>Из наших работ</h2>
+    </div>
+    <a class="port-link" href="#cta">Заказать похожий →</a>
+  </div>
+  <div class="port-grid">
+
+    <!-- Аксонометрия — главная карточка -->
+    <div class="port-card up">
+      <img class="port-img" src="img/axo.jpg" alt="Аксонометрия квартиры Ленинградка"/>
+      <div class="port-overlay">
+        <div class="po-tag">Пакет 01 — Планировка</div>
+        <div class="po-title">Квартира «Ленинградка»<br/>Самара, 82 м²</div>
+        <div class="po-meta">Аксонометрия · Расстановка мебели · Экспликация</div>
+      </div>
+    </div>
+
+    <!-- План квартиры -->
+    <div class="port-card up">
+      <img class="port-img" src="img/plan.jpg" alt="План квартиры Ленинградка"/>
+      <div class="port-overlay">
+        <div class="po-tag">Пакет 01 — Планировка</div>
+        <div class="po-title">План расстановки<br/>«Ленинградка»</div>
+        <div class="po-meta">9 помещений · Терраса · Мастер-спальня</div>
+      </div>
+    </div>
+
+    <!-- Схема отопления 1 этаж -->
+    <div class="port-card up">
+      <img class="port-img" src="img/heating.jpg" alt="Схема отопления ресторан"/>
+      <div class="port-overlay">
+        <div class="po-tag">Инженерный проект</div>
+        <div class="po-title">Ресторан, Бузулук<br/>Система отопления</div>
+        <div class="po-meta">План 1 этажа · Расчёт тепловых нагрузок · М 1:100</div>
+      </div>
+    </div>
+
+    <!-- Схема отопления подвал -->
+    <div class="port-card up">
+      <img class="port-img" src="img/heating2.jpg" alt="Схема отопления подвал"/>
+      <div class="port-overlay">
+        <div class="po-tag">Инженерный проект · ОВ</div>
+        <div class="po-title">Ресторан, Бузулук<br/>Отопление подвала</div>
+        <div class="po-meta">10 помещений · Радиаторы · Конвекторы</div>
+      </div>
+    </div>
+
+    <!-- Заглушка 5 -->
+    <div class="port-card up">
+      <div class="port-placeholder" style="aspect-ratio:16/7;">
+        <div class="ph-icon">📐</div>
+        <div class="ph-text">Следующий проект — скоро</div>
+      </div>
+      <div class="port-overlay">
+        <div class="po-tag">Пакет 03 — Полный</div>
+        <div class="po-title">Студия 34 м²<br/>Самара</div>
+        <div class="po-meta">Проект в работе</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-left up">
+      <div class="s-tag">Тарифы</div>
+      <h2>Три пакета</h2>
+      <p class="s-lead">Точная стоимость зависит от площади — рассчитаем бесплатно после звонка.</p>
+      <a class="btn-solid" href="#cta">Узнать стоимость</a>
+    </div>
+    <div class="plans">
+
+      <div class="plan up">
+        <div>
+          <div class="plan-num">01</div>
+          <div class="plan-name">Планировка</div>
+          <p class="plan-desc">Расстановка мебели и согласование перепланировки</p>
+          <ul class="plan-items">
+            <li><span class="pi-y">✓</span><span>2–3 варианта планировки</span></li>
+            <li><span class="pi-y">✓</span><span>Расстановка мебели с размерами</span></li>
+            <li><span class="pi-y">✓</span><span>Аксонометрия (при необходимости)</span></li>
+            <li><span class="pi-y">✓</span><span>Экспликация помещений</span></li>
+            <li><span class="pi-y">✓</span><span>PDF + DWG</span></li>
+            <li><span class="pi-n">✗</span><span>Розетки, свет, инженерия</span></li>
+          </ul>
+        </div>
+        <div class="plan-price-col">
+          <div class="plan-from">от</div>
+          <div class="plan-price">9 900 ₽</div>
+          <a class="plan-cta-link" href="#cta">Заказать →</a>
+        </div>
+      </div>
+
+      <div class="plan active up">
+        <div>
+          <div class="plan-num">02 · Популярный</div>
+          <div class="plan-name">Рабочий проект</div>
+          <p class="plan-desc">Полный комплект для строителей — планировка и все инженерные схемы</p>
+          <ul class="plan-items">
+            <li><span class="pi-y">✓</span><span>Всё из пакета 01</span></li>
+            <li><span class="pi-y">✓</span><span>Схема розеток и выключателей</span></li>
+            <li><span class="pi-y">✓</span><span>План освещения</span></li>
+            <li><span class="pi-y">✓</span><span>Водопровод и канализация</span></li>
+            <li><span class="pi-y">✓</span><span>Все размеры и привязки</span></li>
+            <li><span class="pi-y">✓</span><span>Спецификация материалов</span></li>
+          </ul>
+        </div>
+        <div class="plan-price-col">
+          <div class="plan-from">от</div>
+          <div class="plan-price">19 900 ₽</div>
+          <a class="plan-cta-link" href="#cta">Заказать →</a>
+        </div>
+      </div>
+
+      <div class="plan up">
+        <div>
+          <div class="plan-num">03</div>
+          <div class="plan-name">Полный</div>
+          <p class="plan-desc">Рабочий проект + ИИ-визуализация каждой комнаты</p>
+          <ul class="plan-items">
+            <li><span class="pi-y">✓</span><span>Всё из пакета 02</span></li>
+            <li><span class="pi-y">✓</span><span>ИИ-визуализация всех комнат</span></li>
+            <li><span class="pi-y">✓</span><span>3–5 ракурсов на помещение</span></li>
+            <li><span class="pi-y">✓</span><span>Подбор цветовых решений</span></li>
+            <li><span class="pi-y">✓</span><span>Бюджет отделки (ориентир)</span></li>
+            <li><span class="pi-y">✓</span><span>2 правки бесплатно</span></li>
+          </ul>
+        </div>
+        <div class="plan-price-col">
+          <div class="plan-from">от</div>
+          <div class="plan-price">29 900 ₽</div>
+          <a class="plan-cta-link" href="#cta">Заказать →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section class="included">
+  <div class="inc-head up">
+    <div class="s-tag">Состав проекта</div>
+    <h2>Что получает строитель</h2>
+  </div>
+  <div class="inc-grid">
+    <div class="inc-item up"><div class="inc-n">01</div><div class="inc-title">План с размерами</div><p class="inc-desc">Все стены, проёмы, ниши с точными габаритами и привязками</p></div>
+    <div class="inc-item up"><div class="inc-n">02</div><div class="inc-title">Расстановка мебели</div><p class="inc-desc">Каждый предмет с учётом открывания дверей и зон прохода</p></div>
+    <div class="inc-item up"><div class="inc-n">03</div><div class="inc-title">Розетки и выключатели</div><p class="inc-desc">Точное положение с привязкой и высотой установки</p></div>
+    <div class="inc-item up"><div class="inc-n">04</div><div class="inc-title">Схема освещения</div><p class="inc-desc">Потолочный свет, споты, бра — разводка по выключателям</p></div>
+    <div class="inc-item up"><div class="inc-n">05</div><div class="inc-title">Водопровод</div><p class="inc-desc">Точки подвода ХВС/ГВС с привязками для сантехника</p></div>
+    <div class="inc-item up"><div class="inc-n">06</div><div class="inc-title">Канализация</div><p class="inc-desc">Схема выпусков и уклонов — укладка в стяжку без сюрпризов</p></div>
+    <div class="inc-item up"><div class="inc-n">07</div><div class="inc-title">Спецификация</div><p class="inc-desc">Список материалов — купите ровно столько, сколько нужно</p></div>
+    <div class="inc-item up"><div class="inc-n">08</div><div class="inc-title">PDF + DWG</div><p class="inc-desc">Для печати и передачи, плюс исходник для редактирования</p></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="team-inner">
+    <div class="team-head-row">
+      <div class="s-tag">Команда</div>
+      <h2>Нас двое — и это <em style="color:rgba(255,255,255,.35)">наша сила</em></h2>
+      <p class="s-lead">n² — две Нади: архитектор и инженер. Полностью закрываем проект сами, от планировки до труб. Никаких субподрядчиков.</p>
+    </div>
+    <div class="team-card up">
+      <div class="tc-num">01</div>
+      <div class="tc-role">Архитектор</div>
+      <div class="tc-name">Надежда</div>
+      <p class="tc-desc">Планировка, зонирование, расстановка мебели, аксонометрия. Делает пространство удобным в жизни — предлагает 2–3 варианта, вы выбираете лучший.</p>
+      <div class="tc-tags">
+        <span class="tc-tag">Планировка</span>
+        <span class="tc-tag">Зонирование</span>
+        <span class="tc-tag">Аксонометрия</span>
+        <span class="tc-tag">ИИ-визуализация</span>
+      </div>
+    </div>
+    <div class="team-card up">
+      <div class="tc-num">02</div>
+      <div class="tc-role">Инженер</div>
+      <div class="tc-name">Надежда</div>
+      <p class="tc-desc">Электрика, освещение, водопровод, канализация, отопление. Строители получают точные схемы — вопросов не остаётся, переделок не случается.</p>
+      <div class="tc-tags">
+        <span class="tc-tag">Электрика</span>
+        <span class="tc-tag">Освещение</span>
+        <span class="tc-tag">Водопровод</span>
+        <span class="tc-tag">Отопление ОВ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="proc-head up">
+    <div class="s-tag">Как работаем</div>
+    <h2>Четыре шага<br/>до готового проекта</h2>
+  </div>
+  <div class="proc-steps">
+    <div class="proc-step up">
+      <div class="ps-n">01</div>
+      <div class="ps-title">Заявка и расчёт</div>
+      <p class="ps-desc">Оставляете номер. Перезваниваем за час. Считаем стоимость, выбираем пакет, подписываем договор онлайн.</p>
+    </div>
+    <div class="proc-step up">
+      <div class="ps-n">02</div>
+      <div class="ps-title">Обмер</div>
+      <p class="ps-desc">Выезжаем на замер (Москва и МО) или работаем по планам застройщика / вашим обмерам.</p>
+    </div>
+    <div class="proc-step up">
+      <div class="ps-n">03</div>
+      <div class="ps-title">Согласование</div>
+      <p class="ps-desc">Показываем 2–3 варианта планировки. Вы вносите правки — чертежи стартуют только после вашего ОК.</p>
+    </div>
+    <div class="proc-step up">
+      <div class="ps-n">04</div>
+      <div class="ps-title">Сдача</div>
+      <p class="ps-desc">Получаете PDF + DWG. Строители работают без вопросов — мы на связи весь ремонт.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="g-inner">
+    <div>
+      <div class="s-tag up">Гарантии</div>
+      <h2 class="up">Вы ничем<br/>не рискуете</h2>
+      <p class="s-lead up">Договор, поэтапная оплата, правки в цене.</p>
+      <div class="g-items" style="margin-top:2rem;">
+        <div class="g-item up"><div class="g-icon">📄</div><div class="g-text"><h3>Договор с фиксированным составом</h3><p>Сроки, листы, состав — всё зафиксировано. Не уложились — возвращаем предоплату.</p></div></div>
+        <div class="g-item up"><div class="g-icon">💳</div><div class="g-text"><h3>Поэтапная оплата</h3><p>50% предоплата, остаток — после приёмки. Не понравится — не платите.</p></div></div>
+        <div class="g-item up"><div class="g-icon">✏️</div><div class="g-text"><h3>Правка в цене</h3><p>Одна корректировка после согласования бесплатно. Без скрытых доплат.</p></div></div>
+        <div class="g-item up"><div class="g-icon">🔧</div><div class="g-text"><h3>Поддержка на стройке</h3><p>Если бригада задаёт вопросы по нашим чертежам — отвечаем бесплатно.</p></div></div>
+      </div>
+    </div>
+    <!-- Реальный инженерный чертёж -->
+    <div class="g-right up">
+      <img class="g-drawing" src="img/heating2.jpg" alt="Инженерный чертёж — схема отопления"/>
+      <div class="g-right-label">Схема отопления подвала · ОВ1 · РП</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="rev-head up">
+    <div class="s-tag">Отзывы</div>
+    <h2>Говорят клиенты</h2>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card up">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">«Строители сказали — такие чертежи видят редко. Всё с размерами, розетки подписаны, схема труб понятная. Ни одной переделки по ходу ремонта.»</p>
+      <div class="rev-hr"></div>
+      <div class="rev-name">Марина К.</div>
+      <div class="rev-meta">Москва · двушка 55 м² · февраль 2025</div>
+    </div>
+    <div class="rev-card up">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">«Думал — зачем платить за проект, бригада "сама знает". Потом посчитал: без проекта потратил бы на переделки вдвое больше. Взял пакет 02 и не пожалел.»</p>
+      <div class="rev-hr"></div>
+      <div class="rev-name">Дмитрий В.</div>
+      <div class="rev-meta">Екатеринбург · студия 38 м² · март 2025</div>
+    </div>
+    <div class="rev-card up">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">«Две Нади — это удобно. Одна — по планировке, другая — по трубам и свету. Никакого "уточним". Быстро, профессионально, по-человечески.»</p>
+      <div class="rev-hr"></div>
+      <div class="rev-name">Алёна Р.</div>
+      <div class="rev-meta">Краснодар · трёшка 78 м² · апрель 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-left">
+      <div class="s-tag">FAQ</div>
+      <h2>Часто<br/>спрашивают</h2>
+      <p class="s-lead">Не нашли ответ — позвоните, разберёмся за 5 минут.</p>
+      <a class="btn-solid" href="#cta" style="margin-top:2rem; display:inline-block;">Задать вопрос</a>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Нужно ли приезжать в офис? <span class="faq-icon">+</span></button><div class="faq-a">Нет. Всё онлайн. Замер делаем с выездом по Москве и МО; в других городах работаем по планам застройщика или помогаем замерить самостоятельно.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">В каком формате получу файлы? <span class="faq-icon">+</span></button><div class="faq-a">PDF — для печати и строителей. DWG (AutoCAD) — для редактирования. ИИ-рендеры — JPEG высокого разрешения.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Можно заказать только электрику? <span class="faq-icon">+</span></button><div class="faq-a">Да. Если планировка уже есть — делаем только инженерные схемы. Обсудим и выставим отдельное КП.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Делаете отопление (ОВ)? <span class="faq-icon">+</span></button><div class="faq-a">Да, делаем проекты отопления — как для квартир, так и для коммерческих объектов. Это отдельный пакет, стоимость обсуждается индивидуально.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Чем ИИ-рендеры отличаются от 3D Max? <span class="faq-icon">+</span></button><div class="faq-a">ИИ-рендеры быстро показывают атмосферу и цвета — достаточно для принятия решений по эконом-ремонту. 3D Max — фотореализм, но дороже в 4–6 раз.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Работаете с новостройками? <span class="faq-icon">+</span></button><div class="faq-a">Да, это наш основной случай. Работаем по планам застройщика до начала ремонта — заказывайте сантехнику и плитку заранее, без переплат за срочность.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="cta-inner">
+    <div>
+      <div class="s-tag up">Связаться</div>
+      <h2 class="up">Рассчитаем стоимость<br/>за один звонок</h2>
+      <p class="s-lead up">Оставьте номер — перезвоним за час, назовём цену по площади.</p>
+      <form class="cta-form up" onsubmit="sub(event)" style="margin-top:2rem;">
+        <input class="cta-tel" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" required/>
+        <button class="cta-btn" type="submit">Перезвоните</button>
+      </form>
+      <p class="cta-note up">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+    </div>
+    <div class="cta-promises">
+      <div class="cp-item up">
+        <div class="cp-icon">📄</div>
+        <div class="cp-text"><strong>Договор</strong><span>Состав, сроки и стоимость — всё зафиксировано</span></div>
+      </div>
+      <div class="cp-item up">
+        <div class="cp-icon">💳</div>
+        <div class="cp-text"><strong>50% предоплата</strong><span>Остаток — только после приёмки проекта</span></div>
+      </div>
+      <div class="cp-item up">
+        <div class="cp-icon">⏱️</div>
+        <div class="cp-text"><strong>От 7 рабочих дней</strong><span>Строители не простаивают в ожидании</span></div>
+      </div>
+      <div class="cp-item up">
+        <div class="cp-icon">📁</div>
+        <div class="cp-text"><strong>PDF + DWG</strong><span>Исходник остаётся у вас навсегда</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="f-logo" href="#">n² архитектурная студия</a>
+  <p>© 2025 n² студия · Дизайн-проекты квартир и домов</p>
+  <div class="f-links">
+    <a href="#">Конфиденциальность</a>
+    <a href="#services">Тарифы</a>
+    <a href="#cta">Контакты</a>
+  </div>
+</footer>
+
+<script>
+  function faq(btn) {
+    const a = btn.nextElementSibling;
+    const open = a.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(x => x.classList.remove('open'));
+    document.querySelectorAll('.faq-q.open').forEach(x => x.classList.remove('open'));
+    if (!open) { a.classList.add('open'); btn.classList.add('open'); }
+  }
+  function sub(e) {
+    e.preventDefault();
+    const b = e.target.querySelector('button');
+    b.textContent = '✓ Заявка принята!';
+    b.style.background = '#2d6a4f';
+    b.disabled = true;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i % 5 * 90);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.up').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
