@@ -240,31 +240,38 @@
 
     /* ── SERVICES ── */
     .services { background: var(--sand); padding: 7rem 5%; }
-    .services-inner {
-      display: grid; grid-template-columns: 1fr 2fr;
-      gap: 6rem; align-items: start;
-    }
-    .services-left { position: sticky; top: 90px; }
-    .services-left h2 { margin-bottom: 1rem; }
-    .services-left .s-lead { margin-bottom: 2rem; max-width: 320px; }
-    .plans { display: flex; flex-direction: column; gap: 3px; }
+    .services-head { max-width: 560px; margin-bottom: 3rem; }
+    .services-head h2 { margin-bottom: .6rem; }
+    .services-head .s-lead { margin-bottom: 0; }
+    .plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
     .plan {
       background: var(--white);
-      padding: 2rem 2.2rem;
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 1.5rem; align-items: start;
-      border-left: 3px solid transparent;
-      transition: border-color .2s, box-shadow .2s;
-      cursor: default;
+      padding: 2rem 1.8rem;
+      display: flex; flex-direction: column;
+      border-top: 3px solid transparent;
+      transition: border-color .2s;
+      cursor: default; position: relative;
     }
-    .plan:hover { border-left-color: var(--gold); box-shadow: 4px 0 0 var(--gold) inset; }
-    .plan.active { border-left-color: var(--gold); }
-    .plan-num { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
-    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: .5rem; line-height: 1.1; }
-    .plan-desc { font-size: .83rem; color: var(--gray); line-height: 1.7; margin-bottom: 1rem; }
-    .plan-items { list-style: none; }
+    .plan:hover { border-top-color: var(--gold); }
+    .plan.active { border-top-color: var(--gold); }
+    .plan-badge {
+      position: absolute; top: -1px; left: 50%; transform: translateX(-50%) translateY(-100%);
+      font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      background: var(--gold); color: var(--white); padding: .3rem .8rem;
+    }
+    .plan-num { font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+    .plan-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; margin-bottom: .4rem; line-height: 1.1; }
+    .plan-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem; font-weight: 300; color: var(--ink); line-height: 1;
+      margin: 1rem 0 0;
+    }
+    .plan-per { font-size: .72rem; color: var(--gray2); margin-top: 3px; }
+    .plan-min { font-size: .75rem; color: var(--gold); font-weight: 500; margin-top: 5px; margin-bottom: 1.2rem; }
+    .plan-div { height: 1px; background: var(--line); margin-bottom: 1.2rem; }
+    .plan-items { list-style: none; flex: 1; }
     .plan-items li {
-      font-size: .8rem; color: var(--ink2); padding: .35rem 0;
+      font-size: .79rem; color: var(--ink2); padding: .32rem 0;
       border-bottom: 1px solid var(--line);
       display: flex; gap: .6rem;
     }
@@ -272,22 +279,19 @@
     .pi-y { color: var(--gold); flex-shrink: 0; }
     .pi-n { color: var(--line); flex-shrink: 0; }
     .pi-n + span { color: var(--gray2); }
-    .plan-price-col { text-align: right; }
-    .plan-from { font-size: .7rem; color: var(--gray2); }
-    .plan-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; font-weight: 400; color: var(--ink); line-height: 1;
-    }
-    .plan-per { font-size: .72rem; color: var(--gray2); margin-top: 2px; }
-    .plan-min { font-size: .75rem; color: var(--gold); font-weight: 500; margin-top: 6px; }
     .plan-cta-link {
-      display: inline-block; margin-top: .8rem;
-      font-size: .72rem; font-weight: 600; letter-spacing: .09em;
-      text-transform: uppercase; color: var(--ink);
-      text-decoration: none; border-bottom: 1px solid var(--line);
-      padding-bottom: 1px; transition: border-color .2s, color .2s;
+      display: block; margin-top: 1.5rem;
+      font-size: .75rem; font-weight: 700; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--white);
+      text-decoration: none; background: var(--ink);
+      padding: .8rem 1rem; text-align: center;
+      transition: background .2s;
     }
-    .plan-cta-link:hover { color: var(--gold); border-color: var(--gold); }
+    .plan-cta-link:hover { background: var(--gold); }
+    .plan.active .plan-cta-link { background: var(--gold); }
+    .plan.active .plan-cta-link:hover { background: var(--ink); }
+    @media (max-width: 1024px) { .plans { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
 
     /* ── WHAT'S INCLUDED ── */
     .included { padding: 7rem 5%; }
@@ -669,110 +673,79 @@
 
 <!-- SERVICES -->
 <section class="services" id="services">
-  <div class="services-inner">
-    <div class="services-left up">
-      <div class="s-tag">Тарифы</div>
-      <h2>Три пакета</h2>
-      <p class="s-lead">Точная стоимость зависит от площади — рассчитаем бесплатно после звонка.</p>
-      <a class="btn-solid" href="#cta">Узнать стоимость</a>
+  <div class="services-head up">
+    <div class="s-tag">Тарифы</div>
+    <h2>Прозрачные цены<br/>за квадратный метр</h2>
+    <p class="s-lead">Выберите нужный объём работ. Минимальная стоимость фиксирована — без скрытых наценок.</p>
+  </div>
+  <div class="plans">
+
+    <div class="plan up">
+      <div class="plan-num">Планировка</div>
+      <div class="plan-price">400 ₽</div>
+      <div class="plan-per">за м² проекта</div>
+      <div class="plan-min">минимум 15 000 ₽</div>
+      <div class="plan-div"></div>
+      <ul class="plan-items">
+        <li><span class="pi-y">✓</span><span>2–3 варианта планировки</span></li>
+        <li><span class="pi-y">✓</span><span>Расстановка мебели с размерами</span></li>
+        <li><span class="pi-y">✓</span><span>Аксонометрия</span></li>
+        <li><span class="pi-y">✓</span><span>Экспликация помещений</span></li>
+        <li><span class="pi-y">✓</span><span>PDF + DWG</span></li>
+      </ul>
+      <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
-    <div class="plans">
 
-      <div class="plan up">
-        <div>
-          <div class="plan-num">01</div>
-          <div class="plan-name">Планировка</div>
-          <p class="plan-desc">Расстановка мебели и согласование перепланировки</p>
-          <ul class="plan-items">
-            <li><span class="pi-y">✓</span><span>2–3 варианта планировки</span></li>
-            <li><span class="pi-y">✓</span><span>Расстановка мебели с размерами</span></li>
-            <li><span class="pi-y">✓</span><span>Аксонометрия (при необходимости)</span></li>
-            <li><span class="pi-y">✓</span><span>Экспликация помещений</span></li>
-            <li><span class="pi-y">✓</span><span>PDF + DWG</span></li>
-            <li><span class="pi-n">✗</span><span>Розетки, свет, инженерия</span></li>
-          </ul>
-        </div>
-        <div class="plan-price-col">
-          <div class="plan-price">400 ₽</div>
-          <div class="plan-per">за м² проекта</div>
-          <div class="plan-min">минимум 15 000 ₽</div>
-          <a class="plan-cta-link" href="#cta">Заказать →</a>
-        </div>
-      </div>
-
-      <div class="plan active up">
-        <div>
-          <div class="plan-num">02 · Популярный</div>
-          <div class="plan-name">Рабочий проект</div>
-          <p class="plan-desc">Полный комплект для строителей — планировка и все рабочие чертежи</p>
-          <ul class="plan-items">
-            <li><span class="pi-y">✓</span><span>Всё из пакета 01</span></li>
-            <li><span class="pi-y">✓</span><span>Схема розеток и выключателей</span></li>
-            <li><span class="pi-y">✓</span><span>План освещения</span></li>
-            <li><span class="pi-y">✓</span><span>Сантехника</span></li>
-            <li><span class="pi-y">✓</span><span>Все размеры и привязки</span></li>
-            <li><span class="pi-y">✓</span><span>Спецификация материалов</span></li>
-          </ul>
-        </div>
-        <div class="plan-price-col">
-          <div class="plan-price">900 ₽</div>
-          <div class="plan-per">за м² проекта</div>
-          <div class="plan-min">минимум 35 000 ₽</div>
-          <a class="plan-cta-link" href="#cta">Заказать →</a>
-        </div>
-      </div>
-
-      <div class="plan up">
-        <div>
-          <div class="plan-num">03</div>
-          <div class="plan-name">Полный</div>
-          <p class="plan-desc">Рабочий проект + ИИ-визуализация каждой комнаты</p>
-          <ul class="plan-items">
-            <li><span class="pi-y">✓</span><span>Всё из пакета 02</span></li>
-            <li><span class="pi-y">✓</span><span>ИИ-визуализация всех комнат</span></li>
-            <li><span class="pi-y">✓</span><span>3–5 ракурсов на помещение</span></li>
-            <li><span class="pi-y">✓</span><span>Подбор цветовых решений</span></li>
-            <li><span class="pi-y">✓</span><span>Помощь в подборе мебели</span></li>
-            <li><span class="pi-y">✓</span><span>Дизайн мебели индивидуального изготовления</span></li>
-            <li><span class="pi-y">✓</span><span>2 правки бесплатно</span></li>
-          </ul>
-        </div>
-        <div class="plan-price-col">
-          <div class="plan-price">1 500 ₽</div>
-          <div class="plan-per">за м² проекта</div>
-          <div class="plan-min">минимум 60 000 ₽</div>
-          <a class="plan-cta-link" href="#cta">Заказать →</a>
-        </div>
-      </div>
-
-      <div class="plan up" style="border-left-color: var(--ink);">
-        <div>
-          <div class="plan-num">04 · Дополнительно</div>
-          <div class="plan-name">Авторский надзор</div>
-          <p class="plan-desc">Контролируем ремонт на месте — строители работают строго по проекту, без самодеятельности</p>
-          <ul class="plan-items">
-            <li><span class="pi-y">✓</span><span>Выезды на объект 1–2 раза в неделю</span></li>
-            <li><span class="pi-y">✓</span><span>Проверка соответствия чертежам</span></li>
-            <li><span class="pi-y">✓</span><span>Контроль качества и материалов</span></li>
-            <li><span class="pi-y">✓</span><span>Общение с бригадой вместо вас</span></li>
-            <li><span class="pi-y">✓</span><span>Оперативные корректировки на месте</span></li>
-            <li><span class="pi-y">✓</span><span>Фотоотчёт после каждого визита</span></li>
-          </ul>
-          <div style="margin-top:1rem; padding:1rem; background:var(--sand); font-size:.8rem; color:var(--gray); line-height:1.7;">
-            <strong style="color:var(--ink); display:block; margin-bottom:.3rem;">📍 Работаем в двух городах</strong>
-            <span style="display:flex; justify-content:space-between; margin-bottom:.2rem;"><span>Самара</span><strong style="color:var(--ink);">от 25 000 ₽/мес</strong></span>
-            <span style="display:flex; justify-content:space-between;"><span>Москва</span><strong style="color:var(--ink);">от 55 000 ₽/мес</strong></span>
-          </div>
-        </div>
-        <div class="plan-price-col">
-          <div class="plan-price">25 000 ₽</div>
-          <div class="plan-per">в месяц · Самара</div>
-          <div class="plan-min">от 55 000 ₽ · Москва</div>
-          <a class="plan-cta-link" href="#cta">Обсудить →</a>
-        </div>
-      </div>
-
+    <div class="plan active up">
+      <div class="plan-badge">Популярный</div>
+      <div class="plan-num">Рабочий проект</div>
+      <div class="plan-price">900 ₽</div>
+      <div class="plan-per">за м² проекта</div>
+      <div class="plan-min">минимум 35 000 ₽</div>
+      <div class="plan-div"></div>
+      <ul class="plan-items">
+        <li><span class="pi-y">✓</span><span>Всё из «Планировки»</span></li>
+        <li><span class="pi-y">✓</span><span>Полный комплект чертежей</span></li>
+        <li><span class="pi-y">✓</span><span>Схемы электрики и сантехники</span></li>
+        <li><span class="pi-y">✓</span><span>Спецификация материалов</span></li>
+        <li><span class="pi-y">✓</span><span>Все размеры и привязки</span></li>
+      </ul>
+      <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
+
+    <div class="plan up">
+      <div class="plan-num">Полный проект</div>
+      <div class="plan-price">1 500 ₽</div>
+      <div class="plan-per">за м² проекта</div>
+      <div class="plan-min">минимум 60 000 ₽</div>
+      <div class="plan-div"></div>
+      <ul class="plan-items">
+        <li><span class="pi-y">✓</span><span>Всё из «Рабочего проекта»</span></li>
+        <li><span class="pi-y">✓</span><span>ИИ-визуализация всех комнат</span></li>
+        <li><span class="pi-y">✓</span><span>Подбор цветовых решений</span></li>
+        <li><span class="pi-y">✓</span><span>Помощь в подборе мебели</span></li>
+        <li><span class="pi-y">✓</span><span>Дизайн мебели индивидуального изготовления</span></li>
+        <li><span class="pi-y">✓</span><span>2 правки бесплатно</span></li>
+      </ul>
+      <a class="plan-cta-link" href="#cta">Заказать</a>
+    </div>
+
+    <div class="plan up">
+      <div class="plan-num">Авторский надзор</div>
+      <div class="plan-price">25 000 ₽</div>
+      <div class="plan-per">в месяц · Самара</div>
+      <div class="plan-min">от 55 000 ₽ · Москва</div>
+      <div class="plan-div"></div>
+      <ul class="plan-items">
+        <li><span class="pi-y">✓</span><span>Выезды 1–2 раза в неделю</span></li>
+        <li><span class="pi-y">✓</span><span>Контроль по чертежам</span></li>
+        <li><span class="pi-y">✓</span><span>Приёмка скрытых работ</span></li>
+        <li><span class="pi-y">✓</span><span>Связь с бригадой вместо вас</span></li>
+        <li><span class="pi-y">✓</span><span>Фотоотчёт после каждого визита</span></li>
+      </ul>
+      <a class="plan-cta-link" href="#cta">Обсудить</a>
+    </div>
+
   </div>
 </section>
 
