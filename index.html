@@ -313,7 +313,7 @@
 
     /* ── TEAM ── */
     .team { background: var(--ink); padding: 7rem 5%; }
-    .team-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .team-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
     .team-card {
       background: rgba(255,255,255,.03);
       border: 1px solid rgba(255,255,255,.07);
@@ -332,7 +332,7 @@
     .tc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tc-tag { font-size: .7rem; color: rgba(255,255,255,.4); background: rgba(255,255,255,.05); padding: .25rem .65rem; }
     .team-head-row {
-      grid-column: span 2;
+      grid-column: span 3;
       padding: 3rem 2.5rem 0;
     }
     .team-head-row h2 { color: var(--white); margin-bottom: .6rem; }
@@ -486,6 +486,7 @@
       .inc-grid { grid-template-columns: repeat(2,1fr); }
       .team-inner { grid-template-columns: 1fr; }
       .team-head-row { grid-column: span 1; }
+      .team-inner { grid-template-columns: 1fr; }
       .proc-steps { grid-template-columns: repeat(2,1fr); }
       .g-inner { grid-template-columns: 1fr; }
       .rev-grid { grid-template-columns: 1fr; }
@@ -528,7 +529,7 @@
   <div class="hero-left">
     <div class="hero-tag">Архитектурная студия · Самара</div>
     <h1>Проект,<br/>который <em>работает</em><br/>на стройке</h1>
-    <p class="hero-desc">Планировка, мебель, розетки, свет, водопровод — все чертежи для строителей в одном комплекте. Никаких переделок и споров по ходу ремонта.</p>
+    <p class="hero-desc">Планировка, мебель, розетки, свет, сантехника — полный архитектурный проект для строителей в одном комплекте. Никаких переделок и споров по ходу ремонта.</p>
     <div class="hero-btns">
       <a class="btn-solid" href="#cta">Рассчитать стоимость</a>
       <a class="btn-outline" href="#portfolio">Смотреть работы</a>
@@ -563,8 +564,7 @@
     <span class="strip-item">Расстановка мебели</span>
     <span class="strip-item">Схема розеток</span>
     <span class="strip-item">План освещения</span>
-    <span class="strip-item">Водопровод</span>
-    <span class="strip-item">Канализация</span>
+    <span class="strip-item">Сантехника</span>
     <span class="strip-item">Отопление</span>
     <span class="strip-item">PDF + DWG</span>
     <span class="strip-item">Планировка</span>
@@ -572,8 +572,7 @@
     <span class="strip-item">Расстановка мебели</span>
     <span class="strip-item">Схема розеток</span>
     <span class="strip-item">План освещения</span>
-    <span class="strip-item">Водопровод</span>
-    <span class="strip-item">Канализация</span>
+    <span class="strip-item">Сантехника</span>
     <span class="strip-item">Отопление</span>
     <span class="strip-item">PDF + DWG</span>
   </div>
@@ -687,7 +686,7 @@
             <li><span class="pi-y">✓</span><span>Всё из пакета 01</span></li>
             <li><span class="pi-y">✓</span><span>Схема розеток и выключателей</span></li>
             <li><span class="pi-y">✓</span><span>План освещения</span></li>
-            <li><span class="pi-y">✓</span><span>Водопровод и канализация</span></li>
+            <li><span class="pi-y">✓</span><span>Сантехника</span></li>
             <li><span class="pi-y">✓</span><span>Все размеры и привязки</span></li>
             <li><span class="pi-y">✓</span><span>Спецификация материалов</span></li>
           </ul>
@@ -762,8 +761,8 @@
     <div class="inc-item up"><div class="inc-n">02</div><div class="inc-title">Расстановка мебели</div><p class="inc-desc">Каждый предмет с учётом открывания дверей и зон прохода</p></div>
     <div class="inc-item up"><div class="inc-n">03</div><div class="inc-title">Розетки и выключатели</div><p class="inc-desc">Точное положение с привязкой и высотой установки</p></div>
     <div class="inc-item up"><div class="inc-n">04</div><div class="inc-title">Схема освещения</div><p class="inc-desc">Потолочный свет, споты, бра — разводка по выключателям</p></div>
-    <div class="inc-item up"><div class="inc-n">05</div><div class="inc-title">Водопровод</div><p class="inc-desc">Точки подвода ХВС/ГВС с привязками для сантехника</p></div>
-    <div class="inc-item up"><div class="inc-n">06</div><div class="inc-title">Канализация</div><p class="inc-desc">Схема выпусков и уклонов — укладка в стяжку без сюрпризов</p></div>
+    <div class="inc-item up"><div class="inc-n">05</div><div class="inc-title">Сантехника</div><p class="inc-desc">Точки подвода ХВС/ГВС, схема выпусков и уклонов — укладка в стяжку без сюрпризов</p></div>
+    <div class="inc-item up"><div class="inc-n">06</div><div class="inc-title">Отопление</div><p class="inc-desc">Схема радиаторов и тёплого пола — строители работают без вопросов</p></div>
     <div class="inc-item up"><div class="inc-n">07</div><div class="inc-title">Спецификация</div><p class="inc-desc">Список материалов — купите ровно столько, сколько нужно</p></div>
     <div class="inc-item up"><div class="inc-n">08</div><div class="inc-title">PDF + DWG</div><p class="inc-desc">Для печати и передачи, плюс исходник для редактирования</p></div>
   </div>
@@ -773,14 +772,14 @@
 <section class="team" id="team">
   <div class="team-inner">
     <div class="team-head-row">
-      <div class="s-tag">Команда</div>
-      <h2>Нас двое — и это <em style="color:rgba(255,255,255,.35)">наша сила</em></h2>
-      <p class="s-lead">n² — две Нади: архитектор и инженер. Полностью закрываем проект сами, от планировки до труб. Никаких субподрядчиков.</p>
+      <div class="s-tag">О нас</div>
+      <h2>Наша <em style="color:rgba(255,255,255,.35)">команда</em></h2>
+      <p class="s-lead">Архитектурная студия n² — полный цикл от концепции до рабочих чертежей. Делаем всё сами, без субподрядчиков.</p>
     </div>
     <div class="team-card up">
       <div class="tc-num">01</div>
       <div class="tc-role">Архитектор</div>
-      <div class="tc-name">Надежда</div>
+      <div class="tc-name">Надя</div>
       <p class="tc-desc">Планировка, зонирование, расстановка мебели, аксонометрия. Делает пространство удобным в жизни — предлагает 2–3 варианта, вы выбираете лучший.</p>
       <div class="tc-tags">
         <span class="tc-tag">Планировка</span>
@@ -792,13 +791,22 @@
     <div class="team-card up">
       <div class="tc-num">02</div>
       <div class="tc-role">Инженер</div>
-      <div class="tc-name">Надежда</div>
-      <p class="tc-desc">Электрика, освещение, водопровод, канализация, отопление. Строители получают точные схемы — вопросов не остаётся, переделок не случается.</p>
+      <div class="tc-name">Надя</div>
+      <p class="tc-desc">Электрика, освещение, сантехника, отопление. Строители получают точные схемы — вопросов не остаётся, переделок не случается.</p>
       <div class="tc-tags">
         <span class="tc-tag">Электрика</span>
         <span class="tc-tag">Освещение</span>
-        <span class="tc-tag">Водопровод</span>
+        <span class="tc-tag">Сантехника</span>
         <span class="tc-tag">Отопление ОВ</span>
+      </div>
+    </div>
+    <div class="team-card up">
+      <div class="tc-num">03</div>
+      <div class="tc-role">—</div>
+      <div class="tc-name">Настя</div>
+      <p class="tc-desc">Информация появится совсем скоро.</p>
+      <div class="tc-tags">
+        <span class="tc-tag">—</span>
       </div>
     </div>
   </div>
@@ -879,7 +887,7 @@
     </div>
     <div class="rev-card up">
       <div class="rev-stars">★★★★★</div>
-      <p class="rev-text">«Две Нади — это удобно. Одна — по планировке, другая — по трубам и свету. Никакого "уточним". Быстро, профессионально, по-человечески.»</p>
+      <p class="rev-text">«Команда чёткая: один звонок — и сразу понятно, кто за что отвечает. Никакого "уточним". Быстро, профессионально, по-человечески.»</p>
       <div class="rev-hr"></div>
       <div class="rev-name">Алёна Р.</div>
       <div class="rev-meta">Краснодар · трёшка 78 м² · апрель 2025</div>
@@ -897,7 +905,7 @@
       <a class="btn-solid" href="#cta" style="margin-top:2rem; display:inline-block;">Задать вопрос</a>
     </div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Нужно ли приезжать в офис? <span class="faq-icon">+</span></button><div class="faq-a">Нет. Всё онлайн. Замер делаем с выездом по Москве и МО; в других городах работаем по планам застройщика или помогаем замерить самостоятельно.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Нужно ли приезжать в офис? <span class="faq-icon">+</span></button><div class="faq-a">Нет, офис не нужен — работаем полностью онлайн. Замер с выездом делаем в Самаре и Москве. В других городах можем отправить замерщика или подробно объясним, как сделать обмер самостоятельно: пришлём инструкцию и будем на связи по видеозвонку.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">В каком формате получу файлы? <span class="faq-icon">+</span></button><div class="faq-a">PDF — для печати и строителей. DWG (AutoCAD) — для редактирования. ИИ-рендеры — JPEG высокого разрешения.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">Можно заказать только электрику? <span class="faq-icon">+</span></button><div class="faq-a">Да. Если планировка уже есть — делаем только инженерные схемы. Обсудим и выставим отдельное КП.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">Делаете отопление (ОВ)? <span class="faq-icon">+</span></button><div class="faq-a">Да, делаем проекты отопления — как для квартир, так и для коммерческих объектов. Это отдельный пакет, стоимость обсуждается индивидуально.</div></div>
