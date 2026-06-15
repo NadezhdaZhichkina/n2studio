@@ -311,6 +311,32 @@
     .inc-title { font-size: .9rem; font-weight: 600; margin-bottom: .4rem; }
     .inc-desc { font-size: .8rem; color: var(--gray); line-height: 1.7; }
 
+    /* ── SAVINGS ── */
+    .savings { background: var(--ink); padding: 7rem 5%; }
+    .sav-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .sav-left h2 { color: var(--white); margin-bottom: 1rem; }
+    .sav-left .s-lead { color: rgba(255,255,255,.45); margin-bottom: 2rem; }
+    .sav-box {
+      background: rgba(184,146,74,.08); border: 1px solid rgba(184,146,74,.25);
+      padding: 1.6rem 2rem; margin-top: 2rem;
+    }
+    .sav-box-title { font-size: .82rem; font-weight: 600; color: var(--gold); margin-bottom: .6rem; }
+    .sav-box p { font-size: .84rem; color: rgba(255,255,255,.5); line-height: 1.8; }
+    .sav-box strong { color: var(--gold); }
+    .sav-table { width: 100%; border-collapse: collapse; }
+    .sav-table thead th {
+      font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,.25); padding-bottom: .8rem;
+      border-bottom: 1px solid rgba(255,255,255,.08); text-align: left;
+    }
+    .sav-table thead th:last-child { text-align: right; }
+    .sav-table tbody tr { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .sav-table tbody td { padding: .9rem 0; font-size: .85rem; color: rgba(255,255,255,.5); }
+    .sav-table tbody td:last-child { text-align: right; color: var(--gold); font-weight: 500; }
+    .sav-table tfoot td { padding-top: 1.2rem; font-size: .9rem; font-weight: 600; color: var(--white); }
+    .sav-table tfoot td:last-child { text-align: right; color: var(--gold); font-size: 1.05rem; }
+    @media (max-width: 1024px) { .sav-inner { grid-template-columns: 1fr; gap: 3rem; } }
+
     /* ── TEAM ── */
     .team { background: var(--ink); padding: 7rem 5%; }
     .team-inner { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
@@ -765,6 +791,39 @@
     <div class="inc-item up"><div class="inc-n">06</div><div class="inc-title">Отопление</div><p class="inc-desc">Схема радиаторов и тёплого пола — строители работают без вопросов</p></div>
     <div class="inc-item up"><div class="inc-n">07</div><div class="inc-title">Спецификация</div><p class="inc-desc">Список материалов — купите ровно столько, сколько нужно</p></div>
     <div class="inc-item up"><div class="inc-n">08</div><div class="inc-title">PDF + DWG</div><p class="inc-desc">Для печати и передачи, плюс исходник для редактирования</p></div>
+  </div>
+</section>
+
+<!-- SAVINGS -->
+<section class="savings">
+  <div class="sav-inner">
+    <div class="sav-left up">
+      <div class="s-tag" style="color:rgba(255,255,255,.25);"><span style="display:inline-block;width:20px;height:1px;background:rgba(255,255,255,.15);margin-right:8px;vertical-align:middle;"></span>Калькулятор экономии</div>
+      <h2>Ремонт без проекта<br/>стоит <em style="color:var(--gold)">дороже</em></h2>
+      <p class="s-lead">Типичная история: хозяин экономит на проекте, строители «делают как всегда», потом выясняется, что розетки не там, плитка не сходится, а перегородку нужно переносить. Переделки обходятся в 80–150 тыс. рублей — это полтора-два рабочих проекта.</p>
+      <div class="sav-box">
+        <div class="sav-box-title">Рабочий проект на 60 м² стоит ~54 000 ₽.</div>
+        <p>Одна переделка перегородки — 25 000 ₽. Перенос розеток — 8 000 ₽. Переклейка плитки — 35 000 ₽. Итого ремонт без проекта обходится дороже на <strong>68 000–150 000 ₽.</strong></p>
+      </div>
+    </div>
+    <div class="up">
+      <table class="sav-table">
+        <thead>
+          <tr><th>Типичная переделка</th><th>Стоимость</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Перенос перегородки (неверная планировка)</td><td>20–35 000 ₽</td></tr>
+          <tr><td>Перенос розеток и выключателей</td><td>8–15 000 ₽</td></tr>
+          <tr><td>Переклейка плитки (неверная раскладка)</td><td>25–45 000 ₽</td></tr>
+          <tr><td>Переделка стяжки (неверные отметки)</td><td>15–25 000 ₽</td></tr>
+          <tr><td>Перенос сантехнических точек</td><td>12–20 000 ₽</td></tr>
+          <tr><td>Простой бригады при согласованиях</td><td>10–20 000 ₽</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Итого типичных переделок</td><td>90–160 000 ₽</td></tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
 </section>
 
