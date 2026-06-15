@@ -639,36 +639,8 @@
     </div>
   </div>
   <div class="hero-right">
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8e0d0 0%,#d5c9b4 40%,#c9bfa8 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
-      <!-- Декоративная сетка -->
-      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.08" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#4a3f30" stroke-width=".8"/></pattern></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
-      <!-- Центральная иллюстрация комнаты -->
-      <svg viewBox="0 0 400 320" style="width:72%;max-width:380px;opacity:.55" xmlns="http://www.w3.org/2000/svg">
-        <!-- Пол -->
-        <path d="M40 260 L200 200 L360 260 L360 300 L40 300Z" fill="#c4b49a" stroke="#a09070" stroke-width="1"/>
-        <!-- Левая стена -->
-        <path d="M40 260 L40 60 L200 20 L200 200Z" fill="#ddd5c5" stroke="#b0a085" stroke-width="1"/>
-        <!-- Правая стена -->
-        <path d="M360 260 L360 60 L200 20 L200 200Z" fill="#ccc3b0" stroke="#a09070" stroke-width="1"/>
-        <!-- Окно на левой стене -->
-        <rect x="65" y="90" width="70" height="90" rx="2" fill="#b8d4e8" stroke="#a09070" stroke-width="1" opacity=".7"/>
-        <line x1="65" y1="135" x2="135" y2="135" stroke="#a09070" stroke-width=".8"/>
-        <line x1="100" y1="90" x2="100" y2="180" stroke="#a09070" stroke-width=".8"/>
-        <!-- Диван -->
-        <rect x="90" y="225" width="110" height="35" rx="4" fill="#8a7a65"/>
-        <rect x="90" y="220" width="110" height="12" rx="3" fill="#9a8a72"/>
-        <rect x="90" y="220" width="28" height="40" rx="3" fill="#9a8a72"/>
-        <rect x="172" y="220" width="28" height="40" rx="3" fill="#9a8a72"/>
-        <!-- Журнальный столик -->
-        <ellipse cx="145" cy="268" rx="22" ry="10" fill="#b5a48a" stroke="#9a8a70" stroke-width="1"/>
-        <!-- Торшер -->
-        <line x1="230" y1="215" x2="230" y2="265" stroke="#9a8a70" stroke-width="1.5"/>
-        <path d="M220 215 Q230 205 240 215Z" fill="#e8dcc8" stroke="#b0a085" stroke-width="1"/>
-        <!-- Текст -->
-        <text x="200" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#8a7a65" opacity=".6">ваш интерьер</text>
-      </svg>
-      <div style="position:absolute;bottom:20px;left:20px;font-size:.65rem;color:#8a7a65;letter-spacing:.08em;background:rgba(255,255,255,.7);padding:.3rem .7rem;">Здесь будут фото ваших проектов</div>
-    </div>
+    <img class="hero-drawing" src="img/int_living.jpg" alt="Гостиная — n² студия"/>
+    <div class="hero-right-label">Гостиная · Дом из сруба</div>
   </div>
 </section>
 
@@ -706,62 +678,47 @@
   <div class="port-grid">
 
     <div class="port-card up">
-      <div class="port-placeholder" style="aspect-ratio:16/9; background:#e8e4dc; flex-direction:column; gap:1rem;">
-        <div style="font-size:2.5rem; opacity:.25;">🛋️</div>
-        <div style="font-size:.75rem; color:#888; letter-spacing:.1em; text-transform:uppercase;">Гостиная · фото скоро</div>
-      </div>
-      <div class="port-overlay">
-        <div class="po-tag">Рабочий проект</div>
-        <div class="po-title">Квартира «Ленинградка»<br/>Самара, 82 м²</div>
-        <div class="po-meta">Гостиная · Кухня · Мастер-спальня</div>
-      </div>
-    </div>
-
-    <div class="port-card up">
-      <div class="port-placeholder" style="aspect-ratio:4/5; background:#ede9e0; flex-direction:column; gap:1rem;">
-        <div style="font-size:2.5rem; opacity:.25;">🛏️</div>
-        <div style="font-size:.75rem; color:#888; letter-spacing:.1em; text-transform:uppercase;">Спальня · фото скоро</div>
-      </div>
+      <img class="port-img" src="img/int_living.jpg" alt="Гостиная — Дом из сруба"/>
       <div class="port-overlay">
         <div class="po-tag">Полный проект</div>
-        <div class="po-title">Двушка 58 м²<br/>Самара</div>
-        <div class="po-meta">Спальня · Детская</div>
+        <div class="po-title">Дом из сруба<br/>Гостиная</div>
+        <div class="po-meta">Визуализация · Рабочий проект</div>
       </div>
     </div>
 
     <div class="port-card up">
-      <div class="port-placeholder" style="aspect-ratio:4/3; background:#e4e0d6; flex-direction:column; gap:1rem;">
-        <div style="font-size:2.5rem; opacity:.25;">🍳</div>
-        <div style="font-size:.75rem; color:#888; letter-spacing:.1em; text-transform:uppercase;">Кухня · фото скоро</div>
-      </div>
-      <div class="port-overlay">
-        <div class="po-tag">Рабочий проект</div>
-        <div class="po-title">Студия 38 м²<br/>Самара</div>
-        <div class="po-meta">Кухня-гостиная · Совмещённый санузел</div>
-      </div>
-    </div>
-
-    <div class="port-card up">
-      <div class="port-placeholder" style="aspect-ratio:4/3; background:#ebe7de; flex-direction:column; gap:1rem;">
-        <div style="font-size:2.5rem; opacity:.25;">🚿</div>
-        <div style="font-size:.75rem; color:#888; letter-spacing:.1em; text-transform:uppercase;">Ванная · фото скоро</div>
-      </div>
-      <div class="port-overlay">
-        <div class="po-tag">Рабочий проект</div>
-        <div class="po-title">Трёшка 76 м²<br/>Самара</div>
-        <div class="po-meta">Ванная · Отделка плиткой</div>
-      </div>
-    </div>
-
-    <div class="port-card up">
-      <div class="port-placeholder" style="aspect-ratio:16/7; background:#e6e2d8; flex-direction:column; gap:1rem;">
-        <div style="font-size:2.5rem; opacity:.25;">🏠</div>
-        <div style="font-size:.75rem; color:#888; letter-spacing:.1em; text-transform:uppercase;">Загрузим ваши работы сюда</div>
-      </div>
+      <img class="port-img" src="img/int_bedroom.jpg" alt="Мастер-спальня — Дом из сруба"/>
       <div class="port-overlay">
         <div class="po-tag">Полный проект</div>
-        <div class="po-title">Новостройка 92 м²<br/>Самара</div>
-        <div class="po-meta">В работе</div>
+        <div class="po-title">Дом из сруба<br/>Мастер-спальня</div>
+        <div class="po-meta">Мансардный этаж · Авторский надзор</div>
+      </div>
+    </div>
+
+    <div class="port-card up">
+      <img class="port-img" src="img/int_bath1.jpg" alt="Ванная — Красноармейская"/>
+      <div class="port-overlay">
+        <div class="po-tag">Рабочий проект</div>
+        <div class="po-title">Красноармейская, 103<br/>Санузел</div>
+        <div class="po-meta">Дерево · Бетон · Чёрная фурнитура</div>
+      </div>
+    </div>
+
+    <div class="port-card up">
+      <img class="port-img" src="img/int_bath2.jpg" alt="Ванная ракурс 2 — Красноармейская"/>
+      <div class="port-overlay">
+        <div class="po-tag">Рабочий проект</div>
+        <div class="po-title">Красноармейская, 103<br/>Санузел · ракурс 2</div>
+        <div class="po-meta">Овальное зеркало · LED-подсветка</div>
+      </div>
+    </div>
+
+    <div class="port-card up">
+      <img class="port-img" src="img/int_kids.jpg" alt="Детская — Дом из сруба"/>
+      <div class="port-overlay">
+        <div class="po-tag">Полный проект</div>
+        <div class="po-title">Дом из сруба<br/>Детская комната</div>
+        <div class="po-meta">Рабочая зона · Хранение · Уют</div>
       </div>
     </div>
 
