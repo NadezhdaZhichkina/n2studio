@@ -67,81 +67,78 @@
     /* ── HERO ── */
     .hero {
       margin-top: 58px;
-      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative;
       min-height: calc(100vh - 58px);
+      display: flex; align-items: flex-end;
+      background: var(--ink);
+      overflow: hidden;
     }
-    .hero-left {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 6% 5% 6% 7%;
-      border-right: 1px solid var(--line);
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('img/plan.jpg');
+      background-size: cover; background-position: center;
+      opacity: .13;
+      filter: contrast(1.4) brightness(.7);
     }
+    .hero-content {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: end; gap: 4rem;
+      width: 100%; padding: 6% 5% 5% 7%;
+    }
+    .hero-left { }
     .hero-tag {
       font-size: .7rem; font-weight: 600; letter-spacing: .14em;
       text-transform: uppercase; color: var(--gold);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
       display: flex; align-items: center; gap: 10px;
     }
     .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
     h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 4.5vw, 4rem);
-      font-weight: 300; line-height: 1.1;
-      margin-bottom: 1.5rem;
+      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+      font-weight: 300; line-height: 1.05;
+      margin-bottom: 1.8rem;
+      color: var(--white);
     }
     h1 em { font-style: italic; color: var(--gold); }
     .hero-desc {
-      font-size: .95rem; color: var(--gray);
-      line-height: 1.85; max-width: 400px;
+      font-size: .95rem; color: rgba(255,255,255,.45);
+      line-height: 1.85; max-width: 480px;
       margin-bottom: 2.5rem;
     }
     .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-solid {
       font-size: .78rem; font-weight: 600; letter-spacing: .09em;
-      text-transform: uppercase; color: var(--white);
-      background: var(--ink); padding: .85rem 2rem;
+      text-transform: uppercase; color: var(--ink);
+      background: var(--white); padding: .85rem 2rem;
       text-decoration: none; border: none; cursor: pointer;
-      font-family: inherit; transition: background .2s;
+      font-family: inherit; transition: background .2s, color .2s;
       display: inline-block;
     }
-    .btn-solid:hover { background: var(--gold); }
+    .btn-solid:hover { background: var(--gold); color: var(--white); }
     .btn-outline {
       font-size: .78rem; font-weight: 600; letter-spacing: .09em;
-      text-transform: uppercase; color: var(--ink);
+      text-transform: uppercase; color: rgba(255,255,255,.6);
       background: transparent; padding: .85rem 1.8rem;
-      text-decoration: none; border: 1.5px solid var(--line);
-      font-family: inherit; cursor: pointer; transition: border-color .2s;
+      text-decoration: none; border: 1.5px solid rgba(255,255,255,.2);
+      font-family: inherit; cursor: pointer; transition: border-color .2s, color .2s;
       display: inline-block;
     }
-    .btn-outline:hover { border-color: var(--ink); }
+    .btn-outline:hover { border-color: rgba(255,255,255,.6); color: var(--white); }
     .hero-nums {
-      display: flex; gap: 2.5rem;
-      margin-top: 3.5rem; padding-top: 2.5rem;
-      border-top: 1px solid var(--line);
+      display: flex; flex-direction: column; gap: 2rem;
+      text-align: right; padding-bottom: .5rem;
     }
     .hn { }
     .hn-val {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 400; color: var(--ink); line-height: 1;
+      font-size: 2.2rem; font-weight: 300; color: var(--white); line-height: 1;
     }
-    .hn-label { font-size: .7rem; color: var(--gray2); margin-top: 4px; }
-
-    /* Правая часть hero — реальный чертёж */
-    .hero-right {
-      position: relative; overflow: hidden;
-      background: var(--sand);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-drawing {
-      width: 100%; height: 100%;
-      object-fit: contain;
-      padding: 5%;
-      filter: contrast(1.05);
-    }
-    .hero-right-label {
-      position: absolute; bottom: 24px; left: 24px;
-      font-size: .68rem; color: var(--gray2); letter-spacing: .06em;
-      background: rgba(255,255,255,.85); padding: .3rem .7rem;
-    }
+    .hn-label { font-size: .65rem; color: rgba(255,255,255,.3); margin-top: 3px; letter-spacing: .08em; text-transform: uppercase; }
+    .hero-right { display: none; }
+    .hero-drawing { display: none; }
+    .hero-right-label { display: none; }
 
     /* ── STRIP ── */
     .strip {
@@ -507,8 +504,8 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { height: 50vw; min-height: 300px; }
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-nums { flex-direction: row; text-align: left; }
       .services-inner { grid-template-columns: 1fr; gap: 3rem; }
       .services-left { position: static; }
       .inc-grid { grid-template-columns: repeat(2,1fr); }
@@ -553,33 +550,31 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">Архитектурная студия · Самара</div>
-    <h1>Проект квартиры,<br/>который <em>экономит</em><br/>на ремонте</h1>
-    <p class="hero-desc">Планировка, мебель, розетки, свет, сантехника — полный архитектурный проект для строителей в одном комплекте. Никаких переделок и споров по ходу ремонта.</p>
-    <div class="hero-btns">
-      <a class="btn-solid" href="#cta">Рассчитать стоимость</a>
-      <a class="btn-outline" href="#portfolio">Смотреть работы</a>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag">n² Архитектурная студия · Самара</div>
+      <h1>Проект квартиры,<br/>который <em>экономит</em><br/>на ремонте</h1>
+      <p class="hero-desc">Планировка, мебель, розетки, свет, сантехника — полный архитектурный проект для строителей в одном комплекте. Никаких переделок и споров по ходу ремонта.</p>
+      <div class="hero-btns">
+        <a class="btn-solid" href="#cta">Рассчитать стоимость</a>
+        <a class="btn-outline" href="#portfolio">Смотреть работы</a>
+      </div>
     </div>
     <div class="hero-nums">
       <div class="hn">
         <div class="hn-val">340+</div>
-        <div class="hn-label">готовых проектов</div>
+        <div class="hn-label">проектов</div>
       </div>
       <div class="hn">
-        <div class="hn-val">от 7 дн</div>
-        <div class="hn-label">срок сдачи</div>
+        <div class="hn-val">7 лет</div>
+        <div class="hn-label">на рынке</div>
       </div>
       <div class="hn">
-        <div class="hn-val">4.9 ★</div>
+        <div class="hn-val">4.9</div>
         <div class="hn-label">рейтинг</div>
       </div>
     </div>
-  </div>
-  <div class="hero-right">
-    <!-- Реальная аксонометрия квартиры -->
-    <img class="hero-drawing" src="img/axo.jpg" alt="Аксонометрия квартиры — n² студия"/>
-    <div class="hero-right-label">Аксонометрия · Квартира «Ленинградка»</div>
   </div>
 </section>
 
@@ -738,6 +733,7 @@
             <li><span class="pi-y">✓</span><span>3–5 ракурсов на помещение</span></li>
             <li><span class="pi-y">✓</span><span>Подбор цветовых решений</span></li>
             <li><span class="pi-y">✓</span><span>Помощь в подборе мебели</span></li>
+            <li><span class="pi-y">✓</span><span>Дизайн мебели индивидуального изготовления</span></li>
             <li><span class="pi-y">✓</span><span>2 правки бесплатно</span></li>
           </ul>
         </div>
