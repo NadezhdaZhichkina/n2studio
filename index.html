@@ -182,65 +182,52 @@
       display: flex; justify-content: space-between; align-items: flex-end;
       margin-bottom: 3.5rem; flex-wrap: wrap; gap: 1rem;
     }
-    .port-link {
-      font-size: .75rem; font-weight: 500; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--gray); text-decoration: none;
-      border-bottom: 1px solid var(--line); padding-bottom: 2px;
-      transition: color .2s, border-color .2s;
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .proj-card {
+      cursor: pointer; background: var(--sand);
+      overflow: hidden; transition: box-shadow .2s;
     }
-    .port-link:hover { color: var(--ink); border-color: var(--ink); }
-
-    /* Сетка проектов */
-    .port-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 3px;
-    }
-    .port-card {
-      position: relative; overflow: hidden;
-      background: var(--sand); cursor: pointer;
-    }
-    .port-card:first-child { grid-column: span 2; }
-    .port-card:nth-child(5) { grid-column: span 2; }
-
-    .port-img {
-      width: 100%; display: block;
-      object-fit: cover; object-position: center;
+    .proj-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,.12); }
+    .proj-cover {
+      height: 340px; background-size: cover; background-position: center;
       transition: transform .5s ease;
-      filter: contrast(1.02);
     }
-    .port-card:first-child .port-img { aspect-ratio: 16/9; }
-    .port-card:nth-child(2) .port-img { aspect-ratio: 4/5; }
-    .port-card:nth-child(3) .port-img { aspect-ratio: 4/3; }
-    .port-card:nth-child(4) .port-img { aspect-ratio: 4/3; }
-    .port-card:nth-child(5) .port-img { aspect-ratio: 16/7; }
+    .proj-card:hover .proj-cover { transform: scale(1.03); }
+    .proj-info { padding: 1.8rem 2rem; }
+    .proj-tag { font-size: .65rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+    .proj-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: .3rem; }
+    .proj-meta { font-size: .82rem; color: var(--gray); margin-bottom: 1rem; }
+    .proj-cta { font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); }
+    @media (max-width: 768px) { .proj-grid { grid-template-columns: 1fr; } .proj-cover { height: 260px; } }
 
-    .port-card:hover .port-img { transform: scale(1.03); }
-
-    .port-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(17,17,16,.85) 0%, transparent 55%);
-      opacity: 0; transition: opacity .35s;
-      display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 24px;
+    /* ── GALLERY ── */
+    .gallery-overlay {
+      display: none; position: fixed; inset: 0; z-index: 950;
+      background: rgba(10,10,9,.92); flex-direction: column;
+      align-items: center; justify-content: center; padding: 1rem;
     }
-    .port-card:hover .port-overlay { opacity: 1; }
-    .po-tag { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold2); margin-bottom: 6px; }
-    .po-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 4px; }
-    .po-meta { font-size: .75rem; color: rgba(255,255,255,.5); }
-
-    /* Заглушки для карточек без реального фото */
-    .port-placeholder {
-      width: 100%; background: #1a1916;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: .5rem;
+    .gallery-overlay.open { display: flex; }
+    .gallery-close {
+      position: fixed; top: 1.2rem; right: 1.5rem;
+      background: none; border: none; color: rgba(255,255,255,.6);
+      font-size: 1.8rem; cursor: pointer; z-index: 10; line-height: 1;
     }
-    .port-card:nth-child(3) .port-placeholder { aspect-ratio: 4/3; }
-    .port-card:nth-child(4) .port-placeholder { aspect-ratio: 4/3; }
-    .ph-icon { font-size: 2rem; opacity: .3; }
-    .ph-text { font-size: .72rem; color: rgba(255,255,255,.2); letter-spacing: .1em; text-transform: uppercase; }
+    .gallery-close:hover { color: var(--white); }
+    .gallery-prev, .gallery-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: rgba(255,255,255,.5);
+      font-size: 3rem; cursor: pointer; z-index: 10; padding: 1rem;
+      line-height: 1; transition: color .2s;
+    }
+    .gallery-prev { left: .5rem; }
+    .gallery-next { right: .5rem; }
+    .gallery-prev:hover, .gallery-next:hover { color: var(--white); }
+    .gallery-inner { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; max-height: calc(100vh - 120px); }
+    .gallery-img { max-height: calc(100vh - 160px); max-width: 90vw; object-fit: contain; }
+    .gallery-caption { font-size: .72rem; color: rgba(255,255,255,.35); letter-spacing: .08em; margin-top: .8rem; }
+    .gallery-thumbs { display: flex; gap: 6px; margin-top: .8rem; flex-wrap: wrap; justify-content: center; }
+    .g-thumb { width: 56px; height: 40px; object-fit: cover; cursor: pointer; opacity: .45; transition: opacity .2s; }
+    .g-thumb:hover, .g-thumb.active { opacity: 1; }
 
     /* ── SERVICES ── */
     .services { background: var(--sand); padding: 7rem 5%; }
@@ -635,10 +622,6 @@
         <div class="hn-val">7 лет</div>
         <div class="hn-label">на рынке</div>
       </div>
-      <div class="hn">
-        <div class="hn-val">4.9 ★</div>
-        <div class="hn-label">рейтинг</div>
-      </div>
     </div>
   </div>
   <div class="hero-right">
@@ -674,60 +657,71 @@
   <div class="port-head up">
     <div>
       <div class="s-tag">Портфолио</div>
-      <h2>Из наших работ</h2>
-    </div>
-    <a class="port-link" href="#cta">Заказать похожий →</a>
-  </div>
-  <!-- Проект 1: Дом из сруба -->
-  <div class="port-project-label up"><span class="s-tag">Проект 01</span><span class="port-project-title">Дом из сруба · Полный проект</span></div>
-  <div class="port-grid" style="margin-bottom:3px;">
-    <div class="port-card up">
-      <img class="port-img" src="img/int_living.jpg" alt="Гостиная"/>
-      <div class="port-overlay"><div class="po-tag">Гостиная</div><div class="po-title">Светлый скандинавский стиль</div><div class="po-meta">Французские двери · Диван · Люстра</div></div>
-    </div>
-    <div class="port-card up">
-      <img class="port-img" src="img/int_kitchen.jpg" alt="Кухня"/>
-      <div class="port-overlay"><div class="po-tag">Кухня</div><div class="po-title">Фасады шейкер · оливковый</div><div class="po-meta">Мраморный фартук · Панорамное окно</div></div>
-    </div>
-    <div class="port-card up">
-      <img class="port-img" src="img/int_bedroom.jpg" alt="Мастер-спальня"/>
-      <div class="port-overlay"><div class="po-tag">Мастер-спальня</div><div class="po-title">Мансардный этаж</div><div class="po-meta">Скошенный потолок · Уют · Плетёный ковёр</div></div>
-    </div>
-    <div class="port-card up">
-      <img class="port-img" src="img/int_kids.jpg" alt="Детская"/>
-      <div class="port-overlay"><div class="po-tag">Детская</div><div class="po-title">Рабочая зона и хранение</div><div class="po-meta">Стеллаж · Письменный стол · Свет</div></div>
-    </div>
-    <div class="port-card up">
-      <img class="port-img" src="img/int_stairs.jpg" alt="Лестница"/>
-      <div class="port-overlay"><div class="po-tag">Лестница</div><div class="po-title">Переход между этажами</div><div class="po-meta">Дерево · Металл · Натуральный свет</div></div>
+      <h2>Наши работы</h2>
     </div>
   </div>
+  <div class="proj-grid">
 
-  <!-- Проект 2: Красноармейская 103 -->
-  <div class="port-project-label up" style="margin-top:3rem;"><span class="s-tag">Проект 02</span><span class="port-project-title">Красноармейская, 103 · Рабочий проект</span></div>
-  <div class="port-grid">
-    <div class="port-card up">
-      <img class="port-img" src="img/int_bath1.jpg" alt="Санузел ракурс 1"/>
-      <div class="port-overlay"><div class="po-tag">Санузел</div><div class="po-title">Дерево и бетон</div><div class="po-meta">Ванна · Душ · Чёрная фурнитура</div></div>
+    <div class="proj-card up" onclick="openGallery('gallery1')">
+      <div class="proj-cover" style="background-image:url('img/int_living.jpg')"></div>
+      <div class="proj-info">
+        <div class="proj-tag">Полный проект</div>
+        <div class="proj-name">Дом из сруба</div>
+        <div class="proj-meta">Гостиная · Кухня · Спальня · Детская</div>
+        <div class="proj-cta">Смотреть проект →</div>
+      </div>
     </div>
-    <div class="port-card up">
-      <img class="port-img" src="img/int_bath2.jpg" alt="Санузел ракурс 2"/>
-      <div class="port-overlay"><div class="po-tag">Санузел</div><div class="po-title">Овальное зеркало с подсветкой</div><div class="po-meta">Вертикальная плитка · LED</div></div>
+
+    <div class="proj-card up" onclick="openGallery('gallery2')">
+      <div class="proj-cover" style="background-image:url('img/int_bath2.jpg')"></div>
+      <div class="proj-info">
+        <div class="proj-tag">Рабочий проект</div>
+        <div class="proj-name">Красноармейская, 103</div>
+        <div class="proj-meta">Санузел · Гардеробная · Прихожая</div>
+        <div class="proj-cta">Смотреть проект →</div>
+      </div>
     </div>
-    <div class="port-card up">
-      <img class="port-img" src="img/int_bath3.jpg" alt="Санузел ракурс 3"/>
-      <div class="port-overlay"><div class="po-tag">Санузел</div><div class="po-title">Тумба с рейками</div><div class="po-meta">Встроенное хранение · Плитка</div></div>
-    </div>
-    <div class="port-card up">
-      <img class="port-img" src="img/int_wardrobe.jpg" alt="Гардеробная"/>
-      <div class="port-overlay"><div class="po-tag">Гардеробная</div><div class="po-title">Встроенные шкафы под потолок</div><div class="po-meta">Дуб · Чёрные ручки · Зеркало</div></div>
-    </div>
-    <div class="port-card up">
-      <img class="port-img" src="img/int_hall.jpg" alt="Прихожая"/>
-      <div class="port-overlay"><div class="po-tag">Прихожая</div><div class="po-title">Зона входа</div><div class="po-meta">Светлое дерево · Чистые линии</div></div>
-    </div>
+
   </div>
 </section>
+
+<!-- GALLERY 1 -->
+<div id="gallery1" class="gallery-overlay" onclick="if(event.target===this||event.target.classList.contains('gallery-overlay'))closeGallery('gallery1')">
+  <button class="gallery-close" onclick="closeGallery('gallery1')">✕</button>
+  <button class="gallery-prev" onclick="galleryNav('gallery1',-1)">‹</button>
+  <button class="gallery-next" onclick="galleryNav('gallery1',1)">›</button>
+  <div class="gallery-inner">
+    <img class="gallery-img" src="img/int_living.jpg" alt="Гостиная"/>
+    <div class="gallery-caption">Дом из сруба · Гостиная</div>
+  </div>
+  <div class="gallery-thumbs">
+    <img src="img/int_living.jpg" onclick="setGalleryImg('gallery1',this)" class="g-thumb active"/>
+    <img src="img/int_kitchen.jpg" onclick="setGalleryImg('gallery1',this)" class="g-thumb"/>
+    <img src="img/int_bedroom.jpg" onclick="setGalleryImg('gallery1',this)" class="g-thumb"/>
+    <img src="img/int_bedroom2.jpg" onclick="setGalleryImg('gallery1',this)" class="g-thumb"/>
+    <img src="img/int_kids.jpg" onclick="setGalleryImg('gallery1',this)" class="g-thumb"/>
+    <img src="img/int_stairs.jpg" onclick="setGalleryImg('gallery1',this)" class="g-thumb"/>
+    <img src="img/int_hall.jpg" onclick="setGalleryImg('gallery1',this)" class="g-thumb"/>
+  </div>
+</div>
+
+<!-- GALLERY 2 -->
+<div id="gallery2" class="gallery-overlay" onclick="if(event.target===this||event.target.classList.contains('gallery-overlay'))closeGallery('gallery2')">
+  <button class="gallery-close" onclick="closeGallery('gallery2')">✕</button>
+  <button class="gallery-prev" onclick="galleryNav('gallery2',-1)">‹</button>
+  <button class="gallery-next" onclick="galleryNav('gallery2',1)">›</button>
+  <div class="gallery-inner">
+    <img class="gallery-img" src="img/int_bath1.jpg" alt="Санузел"/>
+    <div class="gallery-caption">Красноармейская, 103 · Санузел</div>
+  </div>
+  <div class="gallery-thumbs">
+    <img src="img/int_bath1.jpg" onclick="setGalleryImg('gallery2',this)" class="g-thumb active"/>
+    <img src="img/int_bath2.jpg" onclick="setGalleryImg('gallery2',this)" class="g-thumb"/>
+    <img src="img/int_bath3.jpg" onclick="setGalleryImg('gallery2',this)" class="g-thumb"/>
+    <img src="img/int_wardrobe.jpg" onclick="setGalleryImg('gallery2',this)" class="g-thumb"/>
+    <img src="img/int_hall.jpg" onclick="setGalleryImg('gallery2',this)" class="g-thumb"/>
+  </div>
+</div>
 
 <!-- SERVICES -->
 <section class="services" id="services">
@@ -975,47 +969,16 @@
       <h2 class="up">Вы ничем<br/>не рискуете</h2>
       <p class="s-lead up">Договор, поэтапная оплата, правки в цене.</p>
       <div class="g-items" style="margin-top:2rem;">
-        <div class="g-item up"><div class="g-icon">📄</div><div class="g-text"><h3>Договор с фиксированным составом</h3><p>Сроки, листы, состав — всё зафиксировано. Не уложились — возвращаем предоплату.</p></div></div>
-        <div class="g-item up"><div class="g-icon">💳</div><div class="g-text"><h3>Поэтапная оплата</h3><p>50% предоплата, остаток — после приёмки. Не понравится — не платите.</p></div></div>
-        <div class="g-item up"><div class="g-icon">✏️</div><div class="g-text"><h3>Правка в цене</h3><p>Одна корректировка после согласования бесплатно. Без скрытых доплат.</p></div></div>
-        <div class="g-item up"><div class="g-icon">🔧</div><div class="g-text"><h3>Поддержка на стройке</h3><p>Если бригада задаёт вопросы по нашим чертежам — отвечаем бесплатно.</p></div></div>
+        <div class="g-item up"><div class="g-icon">📄</div><div class="g-text"><h3>Договор с фиксированным составом</h3><p>Сроки, листы, состав — всё зафиксировано до начала работ.</p></div></div>
+        <div class="g-item up"><div class="g-icon">💳</div><div class="g-text"><h3>Поэтапная оплата</h3><p>50% предоплата, остаток — после приёмки готового проекта.</p></div></div>
+        <div class="g-item up"><div class="g-icon">✏️</div><div class="g-text"><h3>Правка в цене</h3><p>Одна корректировка после согласования включена в стоимость.</p></div></div>
+        <div class="g-item up"><div class="g-icon">🔧</div><div class="g-text"><h3>Авторский надзор</h3><p>Контролируем ремонт на месте — строители работают строго по проекту.</p></div></div>
       </div>
     </div>
     <!-- Реальный инженерный чертёж -->
     <div class="g-right up">
       <img class="g-drawing" src="img/int_bath2.jpg" alt="Санузел — Красноармейская 103"/>
       <div class="g-right-label">Санузел · Красноармейская, 103</div>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="reviews">
-  <div class="rev-head up">
-    <div class="s-tag">Отзывы</div>
-    <h2>Говорят клиенты</h2>
-  </div>
-  <div class="rev-grid">
-    <div class="rev-card up">
-      <div class="rev-stars">★★★★★</div>
-      <p class="rev-text">«Строители сказали — такие чертежи видят редко. Всё с размерами, розетки подписаны, схема труб понятная. Ни одной переделки по ходу ремонта.»</p>
-      <div class="rev-hr"></div>
-      <div class="rev-name">Марина К.</div>
-      <div class="rev-meta">Самара · двушка 55 м² · февраль 2025</div>
-    </div>
-    <div class="rev-card up">
-      <div class="rev-stars">★★★★★</div>
-      <p class="rev-text">«Думал — зачем платить за проект, бригада "сама знает". Потом посчитал: без проекта потратил бы на переделки вдвое больше. Взял пакет 02 и не пожалел.»</p>
-      <div class="rev-hr"></div>
-      <div class="rev-name">Дмитрий В.</div>
-      <div class="rev-meta">Екатеринбург · студия 38 м² · март 2025</div>
-    </div>
-    <div class="rev-card up">
-      <div class="rev-stars">★★★★★</div>
-      <p class="rev-text">«Быстро, чётко, профессионально. Никакого "уточним" и "перезвоним". Сразу понятно, что и когда будет готово.»</p>
-      <div class="rev-hr"></div>
-      <div class="rev-name">Алёна Р.</div>
-      <div class="rev-meta">Краснодар · трёшка 78 м² · апрель 2025</div>
     </div>
   </div>
 </section>
@@ -1164,7 +1127,6 @@
       <ul class="modal-list">
         <li>План дверей и оконных проёмов</li>
         <li>План отделки стен</li>
-        <li>Развёртки по помещениям</li>
       </ul>
     </div>
     <div class="modal-group">
@@ -1266,6 +1228,30 @@
 </div>
 
 <script>
+  function openGallery(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeGallery(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  function setGalleryImg(galleryId, thumb) {
+    var g = document.getElementById(galleryId);
+    g.querySelector('.gallery-img').src = thumb.src;
+    g.querySelectorAll('.g-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+    var captions = {'int_living':'Дом из сруба · Гостиная','int_kitchen':'Дом из сруба · Кухня','int_bedroom':'Дом из сруба · Мастер-спальня','int_bedroom2':'Дом из сруба · Спальня','int_kids':'Дом из сруба · Детская','int_stairs':'Дом из сруба · Лестница','int_hall':'Прихожая','int_bath1':'Красноармейская, 103 · Санузел','int_bath2':'Красноармейская, 103 · Санузел','int_bath3':'Красноармейская, 103 · Санузел','int_wardrobe':'Красноармейская, 103 · Гардеробная'};
+    var key = thumb.src.split('/').pop().replace('.jpg','');
+    g.querySelector('.gallery-caption').textContent = captions[key] || '';
+  }
+  function galleryNav(galleryId, dir) {
+    var g = document.getElementById(galleryId);
+    var thumbs = Array.from(g.querySelectorAll('.g-thumb'));
+    var active = g.querySelector('.g-thumb.active');
+    var idx = thumbs.indexOf(active);
+    var next = thumbs[(idx + dir + thumbs.length) % thumbs.length];
+    setGalleryImg(galleryId, next);
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') { document.querySelectorAll('.gallery-overlay.open').forEach(g=>{ g.classList.remove('open'); document.body.style.overflow=''; }); document.querySelectorAll('.modal-overlay.open').forEach(m=>{ m.classList.remove('open'); document.body.style.overflow=''; }); }
+    if(e.key==='ArrowLeft') { var g=document.querySelector('.gallery-overlay.open'); if(g) galleryNav(g.id,-1); }
+    if(e.key==='ArrowRight') { var g=document.querySelector('.gallery-overlay.open'); if(g) galleryNav(g.id,1); }
+  });
   function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
   function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') { document.querySelectorAll('.modal-overlay.open').forEach(m=>{ m.classList.remove('open'); document.body.style.overflow=''; }); } });
