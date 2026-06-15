@@ -692,6 +692,8 @@
         <li><span class="pi-y">✓</span><span>Аксонометрия</span></li>
         <li><span class="pi-y">✓</span><span>Экспликация помещений</span></li>
         <li><span class="pi-y">✓</span><span>PDF + DWG</span></li>
+        <li><span class="pi-n">✗</span><span>Электрика</span></li>
+        <li><span class="pi-n">✗</span><span>Сантехника</span></li>
       </ul>
       <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
@@ -705,10 +707,12 @@
       <div class="plan-div"></div>
       <ul class="plan-items">
         <li><span class="pi-y">✓</span><span>Всё из «Планировки»</span></li>
-        <li><span class="pi-y">✓</span><span>Полный комплект чертежей</span></li>
-        <li><span class="pi-y">✓</span><span>Схемы электрики и сантехники</span></li>
-        <li><span class="pi-y">✓</span><span>Спецификация материалов</span></li>
+        <li><span class="pi-y">✓</span><span>Сантехника</span></li>
+        <li><span class="pi-y">✓</span><span>План освещения</span></li>
+        <li><span class="pi-y">✓</span><span>План выключателей и розеток</span></li>
         <li><span class="pi-y">✓</span><span>Все размеры и привязки</span></li>
+        <li><span class="pi-y">✓</span><span>Спецификация материалов</span></li>
+        <li><span class="pi-y">✓</span><span>ИИ-визуализация всех комнат (3–5 ракурсов)</span></li>
       </ul>
       <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
@@ -721,9 +725,9 @@
       <div class="plan-div"></div>
       <ul class="plan-items">
         <li><span class="pi-y">✓</span><span>Всё из «Рабочего проекта»</span></li>
-        <li><span class="pi-y">✓</span><span>ИИ-визуализация всех комнат</span></li>
-        <li><span class="pi-y">✓</span><span>Подбор цветовых решений</span></li>
-        <li><span class="pi-y">✓</span><span>Помощь в подборе мебели</span></li>
+        <li><span class="pi-y">✓</span><span>3D Max визуализация всех комнат</span></li>
+        <li><span class="pi-y">✓</span><span>Подбор цветовых решений и материалов</span></li>
+        <li><span class="pi-y">✓</span><span>Спецификация покупной мебели</span></li>
         <li><span class="pi-y">✓</span><span>Дизайн мебели индивидуального изготовления</span></li>
         <li><span class="pi-y">✓</span><span>2 правки бесплатно</span></li>
       </ul>
@@ -747,7 +751,44 @@
     </div>
 
   </div>
+  <div style="text-align:center; margin-top:2.5rem;">
+    <button onclick="document.getElementById('modal-composition').classList.add('open')" style="font-size:.8rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; background:none; border:1.5px solid var(--line); color:var(--gray); padding:.85rem 2rem; cursor:pointer; font-family:inherit; transition:border-color .2s, color .2s;">
+      Что входит в проект подробно →
+    </button>
+  </div>
 </section>
+
+<!-- MODAL: СОСТАВ ПРОЕКТА -->
+<div id="modal-composition" style="display:none; position:fixed; inset:0; z-index:900; background:rgba(17,17,16,.7); backdrop-filter:blur(6px); overflow-y:auto;" onclick="if(event.target===this)this.classList.remove('open')">
+</div>
+<style>
+#modal-composition { display:flex !important; align-items:flex-start; justify-content:center; padding:3rem 1rem; opacity:0; pointer-events:none; transition:opacity .3s; }
+#modal-composition.open { opacity:1; pointer-events:all; }
+.modal-box { background:var(--white); max-width:760px; width:100%; padding:3rem 3.5rem; position:relative; }
+.modal-close { position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; font-size:1.4rem; cursor:pointer; color:var(--gray); line-height:1; }
+.modal-close:hover { color:var(--ink); }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; margin-bottom:.4rem; }
+.modal-sub { font-size:.85rem; color:var(--gray); margin-bottom:2rem; }
+.modal-group { margin-bottom:1.5rem; }
+.modal-group-title { font-size:.7rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gold); margin-bottom:.6rem; padding-bottom:.5rem; border-bottom:1px solid var(--line); }
+.modal-items { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:.2rem 2rem; }
+.modal-items li { font-size:.83rem; color:var(--ink2); padding:.25rem 0; display:flex; align-items:baseline; gap:.5rem; }
+.modal-items li::before { content:'—'; color:var(--gold); flex-shrink:0; font-size:.75rem; }
+.modal-dl { margin-top:2rem; padding-top:2rem; border-top:1px solid var(--line); display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+.modal-dl p { font-size:.83rem; color:var(--gray); line-height:1.6; flex:1; }
+.modal-dl a { font-size:.78rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--white); background:var(--ink); padding:.8rem 1.8rem; text-decoration:none; white-space:nowrap; transition:background .2s; }
+.modal-dl a:hover { background:var(--gold); }
+@media(max-width:640px) { .modal-box { padding:2rem 1.5rem; } .modal-items { grid-template-columns:1fr; } }
+</style>
+
+<div id="modal-composition" style="display:none"></div>
+<script>
+(function(){
+  var modal = document.getElementById('modal-composition');
+  modal.innerHTML = '<div class="modal-box"><button class="modal-close" onclick="document.getElementById(\'modal-composition\').classList.remove(\'open\')">✕</button><div class="s-tag" style="margin-bottom:.8rem;">Состав проекта</div><div class="modal-title">Что входит в рабочий проект</div><div class="modal-sub">Полный перечень листов и спецификаций — передаёте строителям, они работают без вопросов</div><div class="modal-group"><div class="modal-group-title">Планировочные решения</div><ul class="modal-items"><li>Обмерный план</li><li>План демонтажа (для вторичного жилья)</li><li>План монтажа перегородок</li><li>2–3 варианта планировки</li><li>План расстановки мебели</li><li>Аксонометрия</li><li>Экспликация помещений</li></ul></div><div class="modal-group"><div class="modal-group-title">Полы и потолки</div><ul class="modal-items"><li>План пола и напольных покрытий</li><li>План тёплого пола</li><li>Спецификация напольных покрытий и плинтусов</li><li>План потолка</li><li>Plan потолочных карнизов</li><li>Узлы потолочных конструкций (ГК, натяжные)</li></ul></div><div class="modal-group"><div class="modal-group-title">Электрика и освещение</div><ul class="modal-items"><li>План освещения</li><li>План LED-подсветки</li><li>План управления светом</li><li>План выключателей и розеток</li><li>Спецификация светильников и LED</li><li>Сводная спецификация электрики</li></ul></div><div class="modal-group"><div class="modal-group-title">Сантехника</div><ul class="modal-items"><li>План сантехники (точки подключения)</li><li>Спецификация сантехники</li><li>Схема выводов ХВС, ГВС, канализации</li></ul></div><div class="modal-group"><div class="modal-group-title">Отделка стен и двери</div><ul class="modal-items"><li>План отделки стен</li><li>Развёртки по всем помещениям</li><li>Спецификация отделочных материалов</li><li>План заполнения дверных и оконных проёмов</li><li>Спецификация дверей (включая скрытый монтаж)</li></ul></div><div class="modal-group"><div class="modal-group-title">Мебель и спецификации</div><ul class="modal-items"><li>Спецификация покупной мебели и техники</li><li>Сводная спецификация всего проекта</li></ul></div><div class="modal-dl"><p>Хотите посмотреть как выглядит готовый проект? Скачайте пример реального альбома.</p><a href="#cta">Запросить пример →</a></div></div>';
+  modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.remove('open'); });
+})();
+</script>
 
 <!-- INCLUDED -->
 <section class="included">
