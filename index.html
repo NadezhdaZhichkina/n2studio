@@ -291,6 +291,66 @@
     .plan-cta-link:hover { background: var(--gold); }
     .plan.active .plan-cta-link { background: var(--gold); }
     .plan.active .plan-cta-link:hover { background: var(--ink); }
+    .plan-more-link {
+      display: block; margin-top: 1rem; margin-bottom: .4rem;
+      font-size: .75rem; font-weight: 500; letter-spacing: .06em;
+      color: var(--gray); background: none; border: none;
+      cursor: pointer; font-family: inherit; text-align: left;
+      padding: 0; transition: color .2s;
+    }
+    .plan-more-link:hover { color: var(--gold); }
+
+    /* ── MODALS ── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 900;
+      background: rgba(17,17,16,.65); backdrop-filter: blur(6px);
+      align-items: flex-start; justify-content: center;
+      padding: 3rem 1rem; overflow-y: auto;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--white); max-width: 680px; width: 100%;
+      padding: 2.8rem 3rem; position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 1.2rem; right: 1.4rem;
+      background: none; border: none; font-size: 1.3rem;
+      cursor: pointer; color: var(--gray2); line-height: 1;
+    }
+    .modal-close:hover { color: var(--ink); }
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-weight: 400; margin-bottom: .3rem;
+    }
+    .modal-price { font-size: .85rem; color: var(--gold); font-weight: 600; margin-bottom: 1.8rem; }
+    .modal-group { margin-bottom: 1.4rem; }
+    .modal-group-title {
+      font-size: .65rem; font-weight: 700; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: .6rem; padding-bottom: .4rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .modal-list { list-style: none; columns: 2; gap: 1.5rem; }
+    .modal-list li {
+      font-size: .82rem; color: var(--ink2); padding: .2rem 0;
+      display: flex; align-items: baseline; gap: .5rem;
+      break-inside: avoid;
+    }
+    .modal-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-size: .7rem; }
+    .modal-cta {
+      margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .modal-cta p { font-size: .83rem; color: var(--gray); }
+    .modal-cta a {
+      font-size: .75rem; font-weight: 700; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--white);
+      background: var(--ink); padding: .75rem 1.8rem;
+      text-decoration: none; transition: background .2s; white-space: nowrap;
+    }
+    .modal-cta a:hover { background: var(--gold); }
+    @media (max-width: 640px) { .modal-box { padding: 2rem 1.4rem; } .modal-list { columns: 1; } }
+
     @media (max-width: 1024px) { .plans { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
 
@@ -579,8 +639,36 @@
     </div>
   </div>
   <div class="hero-right">
-    <img class="hero-drawing" src="img/axo.jpg" alt="Интерьер — n² студия"/>
-    <div class="hero-right-label">Аксонометрия · Квартира «Ленинградка»</div>
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8e0d0 0%,#d5c9b4 40%,#c9bfa8 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+      <!-- Декоративная сетка -->
+      <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.08" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#4a3f30" stroke-width=".8"/></pattern></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
+      <!-- Центральная иллюстрация комнаты -->
+      <svg viewBox="0 0 400 320" style="width:72%;max-width:380px;opacity:.55" xmlns="http://www.w3.org/2000/svg">
+        <!-- Пол -->
+        <path d="M40 260 L200 200 L360 260 L360 300 L40 300Z" fill="#c4b49a" stroke="#a09070" stroke-width="1"/>
+        <!-- Левая стена -->
+        <path d="M40 260 L40 60 L200 20 L200 200Z" fill="#ddd5c5" stroke="#b0a085" stroke-width="1"/>
+        <!-- Правая стена -->
+        <path d="M360 260 L360 60 L200 20 L200 200Z" fill="#ccc3b0" stroke="#a09070" stroke-width="1"/>
+        <!-- Окно на левой стене -->
+        <rect x="65" y="90" width="70" height="90" rx="2" fill="#b8d4e8" stroke="#a09070" stroke-width="1" opacity=".7"/>
+        <line x1="65" y1="135" x2="135" y2="135" stroke="#a09070" stroke-width=".8"/>
+        <line x1="100" y1="90" x2="100" y2="180" stroke="#a09070" stroke-width=".8"/>
+        <!-- Диван -->
+        <rect x="90" y="225" width="110" height="35" rx="4" fill="#8a7a65"/>
+        <rect x="90" y="220" width="110" height="12" rx="3" fill="#9a8a72"/>
+        <rect x="90" y="220" width="28" height="40" rx="3" fill="#9a8a72"/>
+        <rect x="172" y="220" width="28" height="40" rx="3" fill="#9a8a72"/>
+        <!-- Журнальный столик -->
+        <ellipse cx="145" cy="268" rx="22" ry="10" fill="#b5a48a" stroke="#9a8a70" stroke-width="1"/>
+        <!-- Торшер -->
+        <line x1="230" y1="215" x2="230" y2="265" stroke="#9a8a70" stroke-width="1.5"/>
+        <path d="M220 215 Q230 205 240 215Z" fill="#e8dcc8" stroke="#b0a085" stroke-width="1"/>
+        <!-- Текст -->
+        <text x="200" y="185" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#8a7a65" opacity=".6">ваш интерьер</text>
+      </svg>
+      <div style="position:absolute;bottom:20px;left:20px;font-size:.65rem;color:#8a7a65;letter-spacing:.08em;background:rgba(255,255,255,.7);padding:.3rem .7rem;">Здесь будут фото ваших проектов</div>
+    </div>
   </div>
 </section>
 
@@ -704,6 +792,7 @@
         <li><span class="pi-n">✗</span><span>Электрика</span></li>
         <li><span class="pi-n">✗</span><span>Сантехника</span></li>
       </ul>
+      <button class="plan-more-link" onclick="openModal('modal-plan1')">Состав альбома →</button>
       <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
 
@@ -723,6 +812,7 @@
         <li><span class="pi-y">✓</span><span>Спецификация материалов</span></li>
         <li><span class="pi-y">✓</span><span>ИИ-визуализация всех комнат (3–5 ракурсов)</span></li>
       </ul>
+      <button class="plan-more-link" onclick="openModal('modal-plan2')">Состав альбома →</button>
       <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
 
@@ -740,6 +830,7 @@
         <li><span class="pi-y">✓</span><span>Дизайн мебели индивидуального изготовления</span></li>
         <li><span class="pi-y">✓</span><span>2 правки бесплатно</span></li>
       </ul>
+      <button class="plan-more-link" onclick="openModal('modal-plan3')">Состав альбома →</button>
       <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
 
@@ -1035,7 +1126,189 @@
   </div>
 </footer>
 
+<!-- MODAL: Планировка -->
+<div id="modal-plan1" class="modal-overlay" onclick="if(event.target===this)closeModal('modal-plan1')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-plan1')">✕</button>
+    <div class="s-tag">Состав альбома</div>
+    <div class="modal-title">Планировка</div>
+    <div class="modal-price">400 ₽/м² · минимум 15 000 ₽</div>
+    <div class="modal-group">
+      <div class="modal-group-title">Планировочные решения</div>
+      <ul class="modal-list">
+        <li>Общие данные</li>
+        <li>Обмерный план</li>
+        <li>2–3 варианта планировки</li>
+        <li>План мебели</li>
+        <li>Аксонометрия</li>
+        <li>Экспликация помещений</li>
+        <li>PDF + DWG</li>
+      </ul>
+    </div>
+    <div class="modal-cta">
+      <p>Подходит, если нужна только планировка — без электрики и сантехники</p>
+      <a href="#cta">Заказать →</a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Рабочий проект -->
+<div id="modal-plan2" class="modal-overlay" onclick="if(event.target===this)closeModal('modal-plan2')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-plan2')">✕</button>
+    <div class="s-tag">Состав альбома</div>
+    <div class="modal-title">Рабочий проект</div>
+    <div class="modal-price">900 ₽/м² · минимум 35 000 ₽</div>
+    <div class="modal-group">
+      <div class="modal-group-title">Планировочные решения</div>
+      <ul class="modal-list">
+        <li>Общие данные</li>
+        <li>Обмерный план</li>
+        <li>План демонтажа (если требуется)</li>
+        <li>План монтажа перегородок</li>
+        <li>2–3 варианта планировки</li>
+        <li>План мебели</li>
+        <li>Аксонометрия</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Полы и потолки</div>
+      <ul class="modal-list">
+        <li>План пола и напольных покрытий</li>
+        <li>План плинтусов</li>
+        <li>План тёплого пола</li>
+        <li>План потолка</li>
+        <li>План потолочных карнизов</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Электрика и освещение</div>
+      <ul class="modal-list">
+        <li>План освещения</li>
+        <li>План LED-подсветки</li>
+        <li>План управления светом</li>
+        <li>План выключателей</li>
+        <li>План розеток и электровыводов</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Сантехника</div>
+      <ul class="modal-list">
+        <li>План сантехники</li>
+        <li>Схемы подключения ХВС, ГВС, канализация</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Отделка и двери</div>
+      <ul class="modal-list">
+        <li>План дверей и оконных проёмов</li>
+        <li>План отделки стен</li>
+        <li>Развёртки по помещениям</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">ИИ-визуализация</div>
+      <ul class="modal-list">
+        <li>Все комнаты, 3–5 ракурсов на помещение</li>
+      </ul>
+    </div>
+    <div class="modal-cta">
+      <p>Полный комплект для строителей — работают без вопросов</p>
+      <a href="#cta">Заказать →</a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Полный проект -->
+<div id="modal-plan3" class="modal-overlay" onclick="if(event.target===this)closeModal('modal-plan3')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-plan3')">✕</button>
+    <div class="s-tag">Состав альбома</div>
+    <div class="modal-title">Полный проект</div>
+    <div class="modal-price">1 500 ₽/м² · минимум 60 000 ₽</div>
+    <div class="modal-group">
+      <div class="modal-group-title">Планировочные решения</div>
+      <ul class="modal-list">
+        <li>Общие данные</li>
+        <li>Обмерный план</li>
+        <li>План демонтажа (если требуется)</li>
+        <li>План монтажа перегородок</li>
+        <li>2–3 варианта планировки</li>
+        <li>План мебели</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Полы и потолки</div>
+      <ul class="modal-list">
+        <li>План пола и напольных покрытий</li>
+        <li>План плинтусов</li>
+        <li>План тёплого пола</li>
+        <li>План потолка</li>
+        <li>План потолочных карнизов</li>
+        <li>План вентиляции / кондиционирования</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Электрика и освещение</div>
+      <ul class="modal-list">
+        <li>План освещения</li>
+        <li>План LED-подсветки</li>
+        <li>План управления светом</li>
+        <li>План выключателей</li>
+        <li>План розеток и электровыводов</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Сантехника</div>
+      <ul class="modal-list">
+        <li>План сантехники</li>
+        <li>Схемы подключения ХВС, ГВС, канализация</li>
+        <li>Спецификация сантехники</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Отделка и двери</div>
+      <ul class="modal-list">
+        <li>План дверей и оконных проёмов</li>
+        <li>План отделки стен</li>
+        <li>Развёртки по помещениям</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">Спецификации</div>
+      <ul class="modal-list">
+        <li>Спецификация мебели и техники</li>
+        <li>Спецификация напольных покрытий</li>
+        <li>Спецификация плинтусов</li>
+        <li>Спецификация дверей</li>
+        <li>Спецификация потолочных решений</li>
+        <li>Спецификация освещения</li>
+        <li>Спецификация LED-подсветки</li>
+        <li>Спецификация выключателей и розеток</li>
+        <li>Спецификация отделочных материалов</li>
+        <li>Сводная спецификация по проекту</li>
+      </ul>
+    </div>
+    <div class="modal-group">
+      <div class="modal-group-title">3D Max визуализация</div>
+      <ul class="modal-list">
+        <li>Все комнаты, фотореалистичные рендеры</li>
+        <li>Подбор цветовых решений и материалов</li>
+        <li>Дизайн мебели индивидуального изготовления</li>
+      </ul>
+    </div>
+    <div class="modal-cta">
+      <p>Максимальный пакет — от концепции до готового интерьера</p>
+      <a href="#cta">Заказать →</a>
+    </div>
+  </div>
+</div>
+
 <script>
+  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') { document.querySelectorAll('.modal-overlay.open').forEach(m=>{ m.classList.remove('open'); document.body.style.overflow=''; }); } });
+
   function faq(btn) {
     const a = btn.nextElementSibling;
     const open = a.classList.contains('open');
