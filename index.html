@@ -297,13 +297,14 @@
     .plan.active .plan-cta-link { background: var(--gold); border-color: var(--gold); }
     .plan.active .plan-cta-link:hover { background: var(--gold2); }
     .plan-more-link {
-      display: block; margin-top: 1rem; margin-bottom: .4rem;
-      font-size: .75rem; font-weight: 500; letter-spacing: .06em;
-      color: var(--gray); background: none; border: none;
-      cursor: pointer; font-family: inherit; text-align: left;
-      padding: 0; transition: color .2s;
+      display: block; flex: 1; min-width: 140px;
+      font-size: .74rem; font-weight: 600; letter-spacing: .05em;
+      color: var(--ink); background: var(--surface2);
+      border: 1px solid var(--line); border-radius: 4px;
+      cursor: pointer; font-family: inherit; text-align: center;
+      padding: .65rem .8rem; transition: color .2s, border-color .2s, background .2s;
     }
-    .plan-more-link:hover { color: var(--gold); }
+    .plan-more-link:hover { color: var(--gold); border-color: var(--gold); background: rgba(192,135,63,.1); }
 
     /* ── MODALS ── */
     .modal-overlay {
@@ -359,28 +360,6 @@
 
     @media (max-width: 1024px) { .plans { grid-template-columns: repeat(2,1fr); } }
     @media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
-
-    /* ── WHAT'S INCLUDED ── */
-    .included { padding: 7rem 5%; background: var(--bg); }
-    .inc-head { max-width: 540px; margin-bottom: 4rem; }
-    .inc-head h2 { margin-bottom: .8rem; }
-    .inc-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    .inc-item {
-      background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
-      padding: 2rem 1.8rem;
-      transition: background .2s, border-color .2s;
-    }
-    .inc-item:hover { background: var(--surface2); border-color: rgba(192,135,63,.35); }
-    .inc-n {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem; font-weight: 600;
-      color: rgba(192,135,63,.3); line-height: 1; margin-bottom: .8rem;
-    }
-    .inc-title { font-size: .9rem; font-weight: 600; margin-bottom: .4rem; color: var(--ink); }
-    .inc-desc { font-size: .8rem; color: var(--gray); line-height: 1.7; }
 
     /* ── SAVINGS ── */
     .savings { background: var(--surface); padding: 7rem 5%; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -460,45 +439,6 @@
     }
     .ps-title { font-size: .93rem; font-weight: 600; margin-bottom: .5rem; color: var(--ink); }
     .ps-desc { font-size: .82rem; color: var(--gray); line-height: 1.75; }
-
-    /* ── GUARANTEE ── */
-    .guarantee { background: var(--surface); padding: 7rem 5%; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .g-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .g-left h2 { margin-bottom: 1rem; }
-    .g-left .s-lead { max-width: 380px; margin-bottom: 2rem; }
-    .g-items { display: flex; flex-direction: column; gap: 10px; }
-    .g-item {
-      background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
-      padding: 1.4rem 1.6rem;
-      display: flex; align-items: flex-start; gap: 1rem;
-      transition: background .2s, border-color .2s;
-    }
-    .g-item:hover { background: var(--surface2); border-color: rgba(192,135,63,.35); }
-    .g-icon {
-      font-size: 1.05rem; flex-shrink: 0; margin-top: 0;
-      width: 36px; height: 36px; border-radius: 8px;
-      background: rgba(192,135,63,.12); display: flex; align-items: center; justify-content: center;
-    }
-    .g-text h3 { font-size: .9rem; font-weight: 600; margin-bottom: .3rem; color: var(--ink); }
-    .g-text p { font-size: .82rem; color: var(--gray); line-height: 1.65; }
-
-    /* Правая — реальный чертёж отопления */
-    .g-right {
-      position: relative;
-      background: var(--bg);
-      border: 1px solid var(--line); border-radius: 10px;
-      overflow: hidden;
-    }
-    .g-drawing {
-      width: 100%; display: block;
-      filter: contrast(1.05) brightness(.98);
-    }
-    .g-right-label {
-      position: absolute; bottom: 12px; left: 12px;
-      font-size: .65rem; color: var(--white); letter-spacing: .06em;
-      background: rgba(19,18,16,.75); padding: .3rem .7rem; border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.15);
-    }
 
     /* ── REVIEWS ── */
     .reviews { padding: 7rem 5%; background: var(--bg); }
@@ -602,11 +542,9 @@
       .hero-nums { flex-direction: row; text-align: left; }
       .services-inner { grid-template-columns: 1fr; gap: 3rem; }
       .services-left { position: static; }
-      .inc-grid { grid-template-columns: repeat(2,1fr); }
       .team-inner { grid-template-columns: 1fr; }
       .team-head-row { grid-column: span 1; grid-template-columns: 1fr; }
       .proc-steps { grid-template-columns: repeat(2,1fr); }
-      .g-inner { grid-template-columns: 1fr; }
       .rev-grid { grid-template-columns: 1fr; }
       .faq-inner { grid-template-columns: 1fr; gap: 3rem; }
       .cta-inner { grid-template-columns: 1fr; gap: 3rem; }
@@ -616,7 +554,7 @@
     @media (max-width: 640px) {
       .port-grid { grid-template-columns: 1fr; }
       .port-card:first-child, .port-card:nth-child(5) { grid-column: span 1; }
-      .inc-grid, .proc-steps { grid-template-columns: 1fr; }
+      .proc-steps { grid-template-columns: 1fr; }
       .cta-form { flex-direction: column; }
       .cta-tel { border-right: 1.5px solid var(--line); border-bottom: none; }
     }
@@ -645,7 +583,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-tag">Архитектурная студия · Самара</div>
+    <div class="hero-tag">Архитектурная студия · Самара, Москва, СПб, Нижний Новгород</div>
     <h1>Проект квартиры,<br/>который <em>экономит</em><br/>на ремонте</h1>
     <p class="hero-desc">Планировка, мебель, розетки, свет, сантехника — полный архитектурный проект для строителей в одном комплекте. Никаких переделок и споров по ходу ремонта.</p>
     <div class="hero-btns">
@@ -760,6 +698,23 @@
   </div>
 </div>
 
+<!-- GALLERY: EXAMPLE PROJECT SHEETS -->
+<div id="gallery-example" class="gallery-overlay" onclick="if(event.target===this||event.target.classList.contains('gallery-overlay'))closeGallery('gallery-example')">
+  <button class="gallery-close" onclick="closeGallery('gallery-example')">✕</button>
+  <button class="gallery-prev" onclick="galleryNav('gallery-example',-1)">‹</button>
+  <button class="gallery-next" onclick="galleryNav('gallery-example',1)">›</button>
+  <div class="gallery-inner">
+    <img class="gallery-img" src="img/axo.jpg" alt="Пример листа проекта — аксонометрия"/>
+    <div class="gallery-caption">Пример проекта · Аксонометрия</div>
+  </div>
+  <div class="gallery-thumbs">
+    <img src="img/axo.jpg" onclick="setGalleryImg('gallery-example',this)" class="g-thumb active"/>
+    <img src="img/plan.jpg" onclick="setGalleryImg('gallery-example',this)" class="g-thumb"/>
+    <img src="img/heating.jpg" onclick="setGalleryImg('gallery-example',this)" class="g-thumb"/>
+    <img src="img/heating2.jpg" onclick="setGalleryImg('gallery-example',this)" class="g-thumb"/>
+  </div>
+</div>
+
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-head up">
@@ -783,8 +738,9 @@
         <li><span class="pi-n">✗</span><span>Электрика</span></li>
         <li><span class="pi-n">✗</span><span>Сантехника</span></li>
       </ul>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
-        <button class="plan-more-link" style="margin-top:0;" onclick="openModal('modal-plan1')">Состав альбома →</button>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;">
+        <button class="plan-more-link" onclick="openModal('modal-plan1')">Состав альбома</button>
+        <button class="plan-more-link" onclick="openGallery('gallery-example')">Пример проекта</button>
       </div>
       <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
@@ -805,8 +761,9 @@
         <li><span class="pi-y">✓</span><span>Спецификация материалов</span></li>
         <li><span class="pi-y">✓</span><span>ИИ-визуализация всех комнат (3–5 ракурсов)</span></li>
       </ul>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
-        <button class="plan-more-link" style="margin-top:0;" onclick="openModal('modal-plan2')">Состав альбома →</button>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;">
+        <button class="plan-more-link" onclick="openModal('modal-plan2')">Состав альбома</button>
+        <button class="plan-more-link" onclick="openGallery('gallery-example')">Пример проекта</button>
       </div>
       <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
@@ -825,8 +782,9 @@
         <li><span class="pi-y">✓</span><span>Дизайн мебели индивидуального изготовления</span></li>
         <li><span class="pi-y">✓</span><span>2 правки бесплатно</span></li>
       </ul>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
-        <button class="plan-more-link" style="margin-top:0;" onclick="openModal('modal-plan3')">Состав альбома →</button>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem;">
+        <button class="plan-more-link" onclick="openModal('modal-plan3')">Состав альбома</button>
+        <button class="plan-more-link" onclick="openGallery('gallery-example')">Пример проекта</button>
       </div>
       <a class="plan-cta-link" href="#cta">Заказать</a>
     </div>
@@ -834,8 +792,8 @@
     <div class="plan up">
       <div class="plan-num">Авторский надзор</div>
       <div class="plan-price">25 000 ₽</div>
-      <div class="plan-per">в месяц · Самара</div>
-      <div class="plan-min">область — обсуждается отдельно</div>
+      <div class="plan-per">в месяц</div>
+      <div class="plan-min">Самара, Москва, СПб, Нижний Новгород</div>
       <div class="plan-div"></div>
       <ul class="plan-items">
         <li><span class="pi-y">✓</span><span>Выезды 1–2 раза в неделю</span></li>
@@ -847,29 +805,6 @@
       <a class="plan-cta-link" href="#cta">Обсудить</a>
     </div>
 
-  </div>
-  <div style="text-align:center; margin-top:2.5rem;">
-    <a href="#cta" style="font-size:.8rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; background:none; border:1.5px solid var(--line); color:var(--gray); padding:.85rem 2rem; cursor:pointer; font-family:inherit; transition:border-color .2s, color .2s; text-decoration:none; display:inline-block;">
-      Скачать пример проекта →
-    </a>
-  </div>
-</section>
-
-<!-- INCLUDED -->
-<section class="included">
-  <div class="inc-head up">
-    <div class="s-tag">Состав проекта</div>
-    <h2>Что получает строитель</h2>
-  </div>
-  <div class="inc-grid">
-    <div class="inc-item up"><div class="inc-n">01</div><div class="inc-title">План с размерами</div><p class="inc-desc">Все стены, проёмы, ниши с точными габаритами и привязками</p></div>
-    <div class="inc-item up"><div class="inc-n">02</div><div class="inc-title">Расстановка мебели</div><p class="inc-desc">Каждый предмет с учётом открывания дверей и зон прохода</p></div>
-    <div class="inc-item up"><div class="inc-n">03</div><div class="inc-title">Розетки и выключатели</div><p class="inc-desc">Точное положение с привязкой и высотой установки</p></div>
-    <div class="inc-item up"><div class="inc-n">04</div><div class="inc-title">Схема освещения</div><p class="inc-desc">Потолочный свет, споты, бра — разводка по выключателям</p></div>
-    <div class="inc-item up"><div class="inc-n">05</div><div class="inc-title">Сантехника</div><p class="inc-desc">Точки подключения ХВС/ГВС и канализации — сантехник знает точно куда вести трубы</p></div>
-    <div class="inc-item up"><div class="inc-n">06</div><div class="inc-title">Отопление</div><p class="inc-desc">Схема радиаторов и тёплого пола — строители работают без вопросов</p></div>
-    <div class="inc-item up"><div class="inc-n">07</div><div class="inc-title">Спецификация</div><p class="inc-desc">Список материалов — купите ровно столько, сколько нужно</p></div>
-    <div class="inc-item up"><div class="inc-n">08</div><div class="inc-title">PDF + DWG</div><p class="inc-desc">Для печати и передачи, плюс исходник для редактирования</p></div>
   </div>
 </section>
 
@@ -958,7 +893,7 @@
     <div class="proc-step up">
       <div class="ps-n">02</div>
       <div class="ps-title">Обмер</div>
-      <p class="ps-desc">Выезжаем на замер по Самаре и области или работаем по планам застройщика / вашим обмерам.</p>
+      <p class="ps-desc">Выезжаем на замер в Самаре, Москве, Санкт-Петербурге и Нижнем Новгороде или работаем по планам застройщика / вашим обмерам.</p>
     </div>
     <div class="proc-step up">
       <div class="ps-n">03</div>
@@ -973,28 +908,6 @@
   </div>
 </section>
 
-<!-- GUARANTEE -->
-<section class="guarantee">
-  <div class="g-inner">
-    <div>
-      <div class="s-tag up">Гарантии</div>
-      <h2 class="up">Вы ничем<br/>не рискуете</h2>
-      <p class="s-lead up">Договор, поэтапная оплата, правки в цене.</p>
-      <div class="g-items" style="margin-top:2rem;">
-        <div class="g-item up"><div class="g-icon">📄</div><div class="g-text"><h3>Договор с фиксированным составом</h3><p>Сроки, листы, состав — всё зафиксировано до начала работ.</p></div></div>
-        <div class="g-item up"><div class="g-icon">💳</div><div class="g-text"><h3>Поэтапная оплата</h3><p>50% предоплата, остаток — после приёмки готового проекта.</p></div></div>
-        <div class="g-item up"><div class="g-icon">✏️</div><div class="g-text"><h3>Правка в цене</h3><p>Одна корректировка после согласования включена в стоимость.</p></div></div>
-        <div class="g-item up"><div class="g-icon">🔧</div><div class="g-text"><h3>Авторский надзор</h3><p>Контролируем ремонт на месте — строители работают строго по проекту.</p></div></div>
-      </div>
-    </div>
-    <!-- Реальный инженерный чертёж -->
-    <div class="g-right up">
-      <img class="g-drawing" src="img/int_bath2.jpg" alt="Санузел — квартира в стиле джапанди"/>
-      <div class="g-right-label">Санузел · Джапанди</div>
-    </div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="faq-inner">
@@ -1005,13 +918,13 @@
       <a class="btn-solid" href="#cta" style="margin-top:2rem; display:inline-block;">Задать вопрос</a>
     </div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Нужно ли приезжать в офис? <span class="faq-icon">+</span></button><div class="faq-a">Нет, офис не нужен — работаем полностью онлайн. Замер с выездом делаем в Самаре и области. В других городах можем отправить замерщика или подробно объясним, как сделать обмер самостоятельно: пришлём инструкцию и будем на связи по видеозвонку.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">Нужно ли приезжать в офис? <span class="faq-icon">+</span></button><div class="faq-a">Нет, офис не нужен — работаем полностью онлайн. Замер с выездом делаем в Самаре, Москве, Санкт-Петербурге и Нижнем Новгороде. В других городах можем отправить замерщика или подробно объясним, как сделать обмер самостоятельно: пришлём инструкцию и будем на связи по видеозвонку.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">В каком формате получу файлы? <span class="faq-icon">+</span></button><div class="faq-a">PDF — для печати и строителей. DWG (AutoCAD) — для редактирования. ИИ-рендеры — JPEG высокого разрешения.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">Можно заказать только электрику? <span class="faq-icon">+</span></button><div class="faq-a">Да. Если планировка уже есть — делаем только инженерные схемы. Обсудим и выставим отдельное КП.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">Делаете отопление (ОВ)? <span class="faq-icon">+</span></button><div class="faq-a">Да, делаем проекты отопления — как для квартир, так и для коммерческих объектов. Это отдельный пакет, стоимость обсуждается индивидуально.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">Чем ИИ-рендеры отличаются от 3D Max? <span class="faq-icon">+</span></button><div class="faq-a">ИИ-рендеры быстро показывают атмосферу и цвета — достаточно для принятия решений по эконом-ремонту. 3D Max — фотореализм, но дороже в 4–6 раз.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">Работаете с новостройками? <span class="faq-icon">+</span></button><div class="faq-a">Да, это наш основной случай. Работаем по планам застройщика до начала ремонта — заказывайте сантехнику и плитку заранее, без переплат за срочность.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="faq(this)">В каких городах делаете авторский надзор? <span class="faq-icon">+</span></button><div class="faq-a">Авторский надзор ведём в Самаре и области — от 25 000 ₽/мес. Включает 1–2 выезда в неделю, фотоотчёт, общение с бригадой и оперативные корректировки.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="faq(this)">В каких городах делаете авторский надзор? <span class="faq-icon">+</span></button><div class="faq-a">Авторский надзор ведём в Самаре, Москве, Санкт-Петербурге и Нижнем Новгороде — от 25 000 ₽/мес. Включает 1–2 выезда в неделю, фотоотчёт, общение с бригадой и оперативные корректировки.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="faq(this)">Авторский надзор — это обязательно? <span class="faq-icon">+</span></button><div class="faq-a">Нет, надзор — отдельная услуга. Но статистика такая: без надзора до 30% работ приходится переделывать. На ремонте за 1,5 млн ₽ надзор стоит 50–100 тыс., а экономит 200–400 тыс. на ошибках строителей.</div></div>
     </div>
   </div>
@@ -1243,7 +1156,7 @@
     g.querySelector('.gallery-img').src = thumb.src;
     g.querySelectorAll('.g-thumb').forEach(t => t.classList.remove('active'));
     thumb.classList.add('active');
-    var captions = {'int_living':'Дом из сруба · Гостиная','int_kitchen':'Дом из сруба · Кухня','int_bedroom':'Дом из сруба · Мастер-спальня','int_bedroom2':'Дом из сруба · Спальня','int_kids':'Дом из сруба · Детская','int_stairs':'Дом из сруба · Лестница','int_hall':'Прихожая','int_bath1':'Джапанди · Санузел','int_bath2':'Джапанди · Санузел','int_bath3':'Джапанди · Санузел','int_wardrobe':'Джапанди · Гардеробная'};
+    var captions = {'int_living':'Дом из сруба · Гостиная','int_kitchen':'Дом из сруба · Кухня','int_bedroom':'Дом из сруба · Мастер-спальня','int_bedroom2':'Дом из сруба · Спальня','int_kids':'Дом из сруба · Детская','int_stairs':'Дом из сруба · Лестница','int_hall':'Прихожая','int_bath1':'Джапанди · Санузел','int_bath2':'Джапанди · Санузел','int_bath3':'Джапанди · Санузел','int_wardrobe':'Джапанди · Гардеробная','axo':'Пример проекта · Аксонометрия','plan':'Пример проекта · Планировочное решение','heating':'Пример проекта · Схема тёплого пола','heating2':'Пример проекта · Схема отопления'};
     var key = thumb.src.split('/').pop().replace('.jpg','');
     g.querySelector('.gallery-caption').textContent = captions[key] || '';
   }
