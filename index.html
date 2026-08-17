@@ -714,7 +714,7 @@
       <div class="proj-cover" style="background-image:url('img/int_bath2.jpg')"></div>
       <div class="proj-info">
         <div class="proj-tag">Рабочий проект</div>
-        <div class="proj-name">Красноармейская, 103</div>
+        <div class="proj-name">Квартира в стиле джапанди</div>
         <div class="proj-meta">Санузел · Гардеробная · Прихожая</div>
         <div class="proj-cta">Смотреть проект →</div>
       </div>
@@ -750,7 +750,7 @@
   <button class="gallery-next" onclick="galleryNav('gallery2',1)">›</button>
   <div class="gallery-inner">
     <img class="gallery-img" src="img/int_bath1.jpg" alt="Санузел"/>
-    <div class="gallery-caption">Красноармейская, 103 · Санузел</div>
+    <div class="gallery-caption">Джапанди · Санузел</div>
   </div>
   <div class="gallery-thumbs">
     <img src="img/int_bath1.jpg" onclick="setGalleryImg('gallery2',this)" class="g-thumb active"/>
@@ -990,8 +990,8 @@
     </div>
     <!-- Реальный инженерный чертёж -->
     <div class="g-right up">
-      <img class="g-drawing" src="img/int_bath2.jpg" alt="Санузел — Красноармейская 103"/>
-      <div class="g-right-label">Санузел · Красноармейская, 103</div>
+      <img class="g-drawing" src="img/int_bath2.jpg" alt="Санузел — квартира в стиле джапанди"/>
+      <div class="g-right-label">Санузел · Джапанди</div>
     </div>
   </div>
 </section>
@@ -1248,7 +1248,7 @@
     g.querySelector('.gallery-img').src = thumb.src;
     g.querySelectorAll('.g-thumb').forEach(t => t.classList.remove('active'));
     thumb.classList.add('active');
-    var captions = {'int_living':'Дом из сруба · Гостиная','int_kitchen':'Дом из сруба · Кухня','int_bedroom':'Дом из сруба · Мастер-спальня','int_bedroom2':'Дом из сруба · Спальня','int_kids':'Дом из сруба · Детская','int_stairs':'Дом из сруба · Лестница','int_hall':'Прихожая','int_bath1':'Красноармейская, 103 · Санузел','int_bath2':'Красноармейская, 103 · Санузел','int_bath3':'Красноармейская, 103 · Санузел','int_wardrobe':'Красноармейская, 103 · Гардеробная'};
+    var captions = {'int_living':'Дом из сруба · Гостиная','int_kitchen':'Дом из сруба · Кухня','int_bedroom':'Дом из сруба · Мастер-спальня','int_bedroom2':'Дом из сруба · Спальня','int_kids':'Дом из сруба · Детская','int_stairs':'Дом из сруба · Лестница','int_hall':'Прихожая','int_bath1':'Джапанди · Санузел','int_bath2':'Джапанди · Санузел','int_bath3':'Джапанди · Санузел','int_wardrobe':'Джапанди · Гардеробная'};
     var key = thumb.src.split('/').pop().replace('.jpg','');
     g.querySelector('.gallery-caption').textContent = captions[key] || '';
   }
