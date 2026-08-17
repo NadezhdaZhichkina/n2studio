@@ -398,12 +398,26 @@
       transition: background .2s, border-color .2s;
     }
     .team-card:hover { background: var(--surface2); border-color: rgba(192,135,63,.35); }
+    .team-card-photo {
+      display: flex; align-items: stretch; padding: 0; overflow: hidden;
+    }
+    .tc-body { flex: 1; padding: 3rem 2rem; min-width: 0; }
+    .tc-photo {
+      width: 40%; flex-shrink: 0; object-fit: cover; display: block;
+      filter: grayscale(1);
+    }
+    @media (max-width: 640px) {
+      .team-card-photo { flex-direction: column; }
+      .tc-photo { width: 100%; height: 280px; order: -1; }
+      .tc-body { padding: 2rem 1.6rem; }
+    }
     .tc-avatar {
       width: 54px; height: 54px; border-radius: 50%;
       background: rgba(192,135,63,.15); border: 1px solid rgba(192,135,63,.3);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600;
       color: var(--gold); margin-bottom: 1.4rem;
+      object-fit: cover;
     }
     .tc-num {
       font-family: 'Playfair Display', serif;
@@ -849,18 +863,20 @@
       <h2>Не просто проект —<br/><em style="color:rgba(255,255,255,.35)">продуманная архитектура</em></h2>
       <p class="s-lead">Мы делаем проекты, которые не вызывают вопросов у строителей. Всё продумано заранее: планировка, свет, сантехника, материалы. Вы экономите нервы и деньги — ремонт идёт по плану, а не по наитию бригады.</p>
     </div>
-    <div class="team-card up">
-      <div class="tc-avatar">Н</div>
-      <div class="tc-num">01</div>
-      <div class="tc-role">Архитектор</div>
-      <div class="tc-name">Надежда Филатова</div>
-      <p class="tc-desc">Планировка, зонирование, расстановка мебели, аксонометрия. Работаем вместе над каждым проектом — от первого эскиза до финального чертежа.</p>
-      <div class="tc-tags">
-        <span class="tc-tag">Планировка</span>
-        <span class="tc-tag">Зонирование</span>
-        <span class="tc-tag">Аксонометрия</span>
-        <span class="tc-tag">ИИ-визуализация</span>
+    <div class="team-card team-card-photo up">
+      <div class="tc-body">
+        <div class="tc-num">01</div>
+        <div class="tc-role">Архитектор</div>
+        <div class="tc-name">Надежда Филатова</div>
+        <p class="tc-desc">Планировка, зонирование, расстановка мебели, аксонометрия. Работаем вместе над каждым проектом — от первого эскиза до финального чертежа.</p>
+        <div class="tc-tags">
+          <span class="tc-tag">Планировка</span>
+          <span class="tc-tag">Зонирование</span>
+          <span class="tc-tag">Аксонометрия</span>
+          <span class="tc-tag">ИИ-визуализация</span>
+        </div>
       </div>
+      <img class="tc-photo" src="img/team-filatova.jpg" alt="Надежда Филатова — архитектор"/>
     </div>
     <div class="team-card up">
       <div class="tc-avatar">Н</div>
