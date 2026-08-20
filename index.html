@@ -545,6 +545,9 @@
     .f-links { display: flex; gap: 1.5rem; }
     .f-links a { font-size: .72rem; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; }
     .f-links a:hover { color: var(--gold); }
+    .f-contacts { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .f-contacts a { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+    .f-contacts a:hover { color: var(--gold); }
 
     /* ── ANIMATIONS ── */
     .up { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
@@ -552,10 +555,9 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .hero-content { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; min-height: 0; }
+      .hero-right { min-height: 60vh; }
       .hero-nums { flex-direction: row; text-align: left; }
-      .services-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .services-left { position: static; }
       .team-inner { grid-template-columns: 1fr; }
       .team-head-row { grid-column: span 1; grid-template-columns: 1fr; }
       .proc-steps { grid-template-columns: repeat(2,1fr); }
@@ -566,8 +568,6 @@
       .nav-links { display: none; }
     }
     @media (max-width: 640px) {
-      .port-grid { grid-template-columns: 1fr; }
-      .port-card:first-child, .port-card:nth-child(5) { grid-column: span 1; }
       .proc-steps { grid-template-columns: 1fr; }
       .cta-form { flex-direction: column; }
       .cta-tel { border-right: 1.5px solid var(--line); border-bottom: none; }
@@ -960,6 +960,7 @@
         <button class="cta-btn" type="submit">Перезвоните мне</button>
       </form>
       <p class="cta-note up">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+      <p class="cta-note up" style="margin-top:.6rem;">Или звоните сами: <a href="tel:+79171083613" style="color:var(--gold);">+7 917 108-36-13</a> · <a href="tel:+79276506990" style="color:var(--gold);">+7 927 650-69-90</a></p>
     </div>
     <div class="cta-promises">
       <div class="cp-item up">
@@ -985,6 +986,10 @@
 <!-- FOOTER -->
 <footer>
   <a class="f-logo" href="#">n² архитектурная студия</a>
+  <div class="f-contacts">
+    <a href="tel:+79171083613">+7 917 108-36-13</a>
+    <a href="tel:+79276506990">+7 927 650-69-90</a>
+  </div>
   <p>© 2025 n² студия · Дизайн-проекты квартир и домов</p>
   <div class="f-links">
     <a href="#">Конфиденциальность</a>
