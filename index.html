@@ -556,7 +556,8 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .hero { grid-template-columns: 1fr; min-height: 0; }
-      .hero-right { min-height: 60vh; }
+      .hero-right { min-height: 0; aspect-ratio: 2339 / 1654; }
+      .hero-right::after { display: none; }
       .hero-nums { flex-direction: row; text-align: left; }
       .team-inner { grid-template-columns: 1fr; }
       .team-head-row { grid-column: span 1; grid-template-columns: 1fr; }
